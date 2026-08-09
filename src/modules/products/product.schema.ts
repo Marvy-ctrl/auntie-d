@@ -7,12 +7,11 @@ export const productVariantSchema = z.object({
   size: ProductSizeEnum,
   price: z.coerce.number().positive("Price must be greater than 0"),
 });
-const productSchema = z.object({
+export const productSchema = z.object({
     name: z.string().min(2, "name is required"),
     slug: z.string().min(2, "Slug is required"),
     description: z.string().optional(),
     shortDescription: z.string().optional(),
-    imageUrl: z.url().optional(),
     price: z.coerce.number().positive("Price must be greater than 0"),
     benefits: z.array(z.string()).default([]),
     warnings: z.array(z.string()).default([]),  
