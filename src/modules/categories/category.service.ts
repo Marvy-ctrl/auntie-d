@@ -15,18 +15,29 @@ export async function getCategoryById(id: string): Promise<Category | null> {
     })
 }
 
-export async function createCategory(data: CategoryInput) { 
-    const { name, description, imageUrl } = data
-    const slug = slugify(name);
+export async function createCategory(_data: CategoryInput) { 
+    const slug = slugify(_data.name);
+
+    const data = {..._data, slug}
 
     return await prisma.category.create({
-        data: {
-            name,
-            description,
-            slug,
-            imageUrl
-        }
+        data
     })
 } 
 
 
+export async function updateCategory(id: string, data: CategoryInput) {
+    const slug = slugify(data.name)
+    return prisma.category.update({
+        where: { id },
+        data: {
+            ...data, slug
+        }
+    })
+}
+
+export async function deleteCategory(id: string){
+    return prisma.category.delete({
+        where: {id}
+    })
+}

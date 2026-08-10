@@ -1,3 +1,4 @@
+import { OrderStatus, PaymentStatus } from "@/src/generated/prisma";
 import z from "zod";
 export const PaymentMethodEnum = z.enum(["BANK_TRANSFER"])
 
@@ -20,5 +21,12 @@ export const createOrderSchema = z.object({
     items: z.array(orderItemSchema).min(1, "Your cart cannot be empty"),
     
 });
-export type OrderInput = z.infer<typeof orderItemSchema>
+
+export const updateOrderSchema = z.object({
+    status: z.enum(OrderStatus).optional(),
+    paymentStatus: z.enum(PaymentStatus).optional()
+})
+
+export type updateOrderInput = z.infer<typeof updateOrderSchema>
+export type OrderItemInput = z.infer<typeof orderItemSchema>
 export type CreateOrderInput = z.infer<typeof createOrderSchema>

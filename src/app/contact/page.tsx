@@ -1,11 +1,9 @@
 import React from 'react'
 
-function Cta() {
+export default function ContactPage() {
   return (
     <div>
-      cta
+      page
     </div>
   )
 }
-
-export default Cta
