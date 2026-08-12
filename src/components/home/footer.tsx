@@ -2,59 +2,64 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-emerald-950 border-t border-emerald-900 py-12 md:py-16 text-emerald-50 font-sans">
+    <footer className="bg-[#0D3327] pt-10 pb-8 text-white font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-8 mb-16">
           
-          <div className="md:col-span-1">
-            <h3 className="font-serif text-xl font-bold text-white mb-4">
-              Auntie-D Herbs
-            </h3>
-            <p className="text-sm text-emerald-100 leading-relaxed pr-4">
-              Ready to Feel Your Best? <br/> Let Nature Guide You.
-            </p>
-          </div>
-
-      
           <div className="md:col-span-2">
-            <div className="grid grid-cols-2 gap-4">
-              
-         
-              <div className="flex flex-col space-y-3">
-                <h4 className="text-sm font-bold text-white mb-5 uppercase tracking-wider">
-                  Legal & Support
-                </h4>
-                <Link href="/privacy" className="text-sm text-emerald-100 hover:text-amber-400 transition-colors">
-                  Privacy Policy
-                </Link>
-                <Link href="/terms" className="text-sm text-emerald-100 hover:text-amber-400 transition-colors">
-                  Terms of Service
-                </Link>
-              </div>
-              <div className="flex flex-col space-y-3">
-                <h4 className="text-sm font-bold text-white mb-5 uppercase tracking-wider">
-                  Basic Information
-                </h4>
-                <Link href="/about" className="text-sm text-emerald-100 hover:text-amber-400 transition-colors">
-                  About Us
-                </Link>
-                <Link href="/contact" className="text-sm text-emerald-100 hover:text-amber-400 transition-colors">
-                  Contact Us
-                </Link>
-              </div>
-
-            </div>
-          </div>
-
-          <div className="md:col-span-1 flex flex-col md:items-end justify-end h-full mt-2 md:mt-0 pt-6 md:pt-0 border-t border-emerald-900 md:border-t-0">
-            <p className="text-xs text-emerald-300 text-left leading-relaxed">
-              © {new Date().getFullYear()} Auntie-D Herbs.<br />
-              Natural Ingredients, Holistic Wellness.
+            <Link href="/" className="font-serif text-2xl font-medium tracking-tight mb-4 inline-block text-[#FDFCF8]">
+              Auntie D
+            </Link>
+            <p className="text-[#728579] text-sm max-w-xs leading-relaxed mt-2">
+              Quality herbal blends made with carefully selected natural ingredients to support your everyday wellness journey.
             </p>
           </div>
 
+          <div>
+            <h4 className="text-[10px] font-bold tracking-widest text-[#728579] uppercase mb-6">
+              Quick Links
+            </h4>
+            <ul className="space-y-4 text-sm font-medium text-[#E8F3E8]">
+              <li>
+                <Link href="/shop" className="hover:text-white transition-colors">Shop</Link>
+              </li>
+              <li>
+                <Link href="/about" className="hover:text-white transition-colors">About Us </Link>
+              </li>
+              <li>
+                <Link href="/track" className="hover:text-white transition-colors">Track order</Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-[10px] font-bold tracking-widest text-[#728579] uppercase mb-6">
+              Contact
+            </h4>
+            <ul className="space-y-4 text-sm text-[#E8F3E8]">
+              <li>+234 9160677079</li>
+              <li>ibukunmodupe101@gmail.com
+
+</li>
+              <li>Ilorin, Nigeria</li>
+              <li className="text-[#728579] pt-2">Nationwide delivery</li>
+            </ul>
+          </div>
         </div>
+
+        {/* Bottom Bar: Copyright & Legal */}
+        <div className="pt-8 border-t border-[#234934] flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#728579]">
+          <p>© {new Date().getFullYear()} Auntie D Herbal Medicine. All rights reserved.</p>
+          <div className="flex gap-4">
+            <Link href="/privacy" className="hover:text-[#E8F3E8] transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-[#E8F3E8] transition-colors">Terms of Service</Link>
+          </div>
+        </div>
+        
       </div>
     </footer>
   );
