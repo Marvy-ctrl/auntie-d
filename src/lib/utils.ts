@@ -27,3 +27,34 @@ export function generateOrderNumber(){
   return `ADH-${datePart}-${randomPart}`
  
 }
+
+
+// cloudinary.config({
+//   cloud_name: process.env.CLOUDINARY_NAME,
+//   api_key: process.env.CLOUDINARY_API_KEY,
+//   api_secret: process.env.CLOUDINARY_API_SECRET,
+// });
+
+
+/**
+ * Uploads a file buffer directly to Cloudinary
+ *  The secure URL of the uploaded image
+//  */
+// export async function uploadToCloudinary(fileBuffer: Buffer): Promise<string> {
+//   return new Promise((resolve, reject) => {
+//     const uploadStream = cloudinary.uploader.upload_stream(
+//       { folder: "auntie-d-herbs/products" },
+//       (error, result) => {
+//         if (error) {
+//           console.error("Cloudinary Detailed Error:", error);
+//           return reject(error);
+
+//         }
+//         if (result) resolve(result.secure_url);
+//         else reject(new Error("Cloudinary upload failed with no result."));
+//       }
+//     );
+
+//     uploadStream.end(fileBuffer);
+//   });
+// }

@@ -5,7 +5,7 @@ import { myCustomFont } from "../fonts/fonts";
 export default function AdminDashboard() {
   return (
     <div className="max-w-6xl mx-auto">
-      <h1 className={`${myCustomFont.className} text-3xl font-serif font-bold text-slate-900 mb-8`}>Dashboard Overview</h1>
+      <h1 className={`${myCustomFont.className} text-3xl font-bold text-slate-900 mb-8`}>Dashboard Overview</h1>
 
   
       <DashboardStats />

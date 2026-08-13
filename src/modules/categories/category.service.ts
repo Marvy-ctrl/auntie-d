@@ -4,7 +4,11 @@ import { CategoryInput } from "./category.schema";
 import { slugify } from "@/src/lib/utils";
 
 export async function getCategories(): Promise<Category[]> {
-    return prisma.category.findMany()
+    return prisma.category.findMany({
+        include: {
+            products: true
+        }
+    })
 }
 
 export async function getCategoryById(id: string): Promise<Category | null> {

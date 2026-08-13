@@ -10,7 +10,7 @@ export default function OrdersPage() {
     <div className={`${myCustomFont.className} max-w-6xl mx-auto`}>
       
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
-        <h1 className="text-3xl font-serif font-bold text-slate-900">Orders</h1>
+        <h1 className="text-3xl font-bold text-slate-900">Orders</h1>
       </div>
 
       <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">

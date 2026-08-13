@@ -1,8 +1,32 @@
+"use client"
 import Link from "next/link";
-import { ShoppingBag, Leaf, Search, Menu } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ShoppingCart, Leaf, Search, Menu } from "lucide-react";
 import Image from "next/image";
 
 export default function Header() {
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    const updateCartCount = () => {
+      const storedCart = JSON.parse(localStorage.getItem('cart') || '[]');
+      const totalItems = storedCart.reduce((sum: number, item: any) => sum + item.quantity, 0);
+      setCartCount(totalItems);
+    };
+
+    updateCartCount();
+
+    // Listen for custom cart updates from product cards or cart page
+    window.addEventListener('cartUpdated', updateCartCount);
+    
+    // Also sync across tabs/windows
+    window.addEventListener('storage', updateCartCount);
+
+    return () => {
+      window.removeEventListener('cartUpdated', updateCartCount);
+      window.removeEventListener('storage', updateCartCount);
+    };
+  }, []);
   return (
     <header className="sticky top-0 z-50 bg-[#FAFAF7]/90 backdrop-blur-md border-b border-green-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,6 +54,12 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
+             <Link
+              href="/"
+              className="text-emerald-900 hover:text-emerald-600 font-medium transition-colors"
+            >
+              Home
+            </Link>
             <Link
               href="/shop"
               className="text-emerald-900 hover:text-emerald-600 font-medium transition-colors"
@@ -43,7 +73,7 @@ export default function Header() {
               About
             </Link>
             <Link
-              href="/contact"
+              href="/#contact"
               className="text-emerald-900 hover:text-emerald-600 font-medium transition-colors"
             >
               Contact Us
@@ -52,15 +82,14 @@ export default function Header() {
 
           <div className="flex items-center space-x-5">
             <button className="text-emerald-800 hover:text-emerald-600 hidden sm:block"></button>
-            <Link
-              href="/cart"
-              className="text-emerald-800 hover:text-emerald-600 relative p-2"
-            >
-              <ShoppingBag className="w-6 h-6" />
-              <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-amber-600 rounded-full">
-                2
-              </span>
-            </Link>
+           <Link href="/cart" className="relative p-2 text-[#123A2D] hover:bg-slate-50 rounded-full transition-colors">
+          <ShoppingCart className="w-6 h-6" />
+          {cartCount > 0 && (
+            <span className="absolute -top-1 -right-1 bg-emerald-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-sm">
+              {cartCount}
+            </span>
+          )}
+        </Link>
           </div>
         </div>
       </div>

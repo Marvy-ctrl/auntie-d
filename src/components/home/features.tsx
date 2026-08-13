@@ -20,7 +20,7 @@ export default function Features() {
               <span className="text-[10px] font-bold tracking-widest text-[#728579] uppercase mb-4">
                 Why Auntie D
               </span>
-              <h2 className="text-4xl lg:text-5xl font-serif font-medium text-[#1A3626] mb-6 leading-tight">
+              <h2 className="text-4xl lg:text-5xl font-medium text-[#1A3626] mb-6 leading-tight">
                 Rooted in nature.<br />Made for real life.
               </h2>
               <p className="text-[#4A5D52] max-w-md leading-relaxed text-lg">
@@ -63,7 +63,7 @@ export default function Features() {
             <span className="text-[10px] font-bold tracking-widest text-[#728579] uppercase mb-4 block">
               Customer Stories
             </span>
-            <h2 className="text-3xl lg:text-4xl font-serif font-medium text-[#1A3626]">
+            <h2 className="text-3xl lg:text-4xl font-medium text-[#1A3626]">
               Kind words from the Auntie D community.
             </h2>
           </div>
@@ -72,27 +72,27 @@ export default function Features() {
             {/* Review 1 */}
             <div className="flex flex-col">
              
-              <p className="text-[#1A3626] text-lg leading-relaxed mb-6 flex-grow font-serif italic">
-                "The ordering process was simple, and Auntie D explained a lot on everything clearly."
+              <p className="text-[#1A3626] text-lg leading-relaxed mb-6 flex-grow italic">
+                "The hormonal imbalance product really worked. My period came with ease  clean and odourless"
               </p>
-              <p className="text-[#728579] font-medium text-sm"> Ahmad S.</p>
+              <p className="text-[#728579] font-medium text-sm"> Anonymous.</p>
             </div>
 
             {/* Review 2 */}
             <div className="flex flex-col">
             
-              <p className="text-[#1A3626] text-lg leading-relaxed mb-6 flex-grow font-serif italic">
-                "I appreciated the careful packaging and the quick WhatsApp update after ordering."
+              <p className="text-[#1A3626] text-lg leading-relaxed mb-6 flex-grow italic">
+                "The infection flusher really is a game changer. My discharge is now back to normal"
               </p>
-              <p className="text-[#728579] font-medium text-sm">Chika O.</p>
+              <p className="text-[#728579] font-medium text-sm">Anonymous.</p>
             </div>
 
             <div className="flex flex-col">
              
-              <p className="text-[#1A3626] text-lg leading-relaxed mb-6 flex-grow font-serif italic">
-                "The consultation helped me choose a wellness routine that felt suitable for me."
+              <p className="text-[#1A3626] text-lg leading-relaxed mb-6 flex-grow italic">
+                "The hemorrhoid herb worked well. I can now use the toilet in peace."
               </p>
-              <p className="text-[#728579] font-medium text-sm"> Femi T.</p>
+              <p className="text-[#728579] font-medium text-sm"> Anonymous</p>
             </div>
           </div>
 
@@ -100,14 +100,14 @@ export default function Features() {
       </section>
 
 
-      <section className="bg-[#1F5A43] py-20 lg:py-24">
+      <section className="bg-[#1F5A43] py-20 lg:py-24" id='contact'>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-end justify-between gap-10">
           
           <div className="flex flex-col items-start">
             <span className={`${inter.className} text-[11px] font-semi-bold tracking-widest text-[#E8F3E8]/70 uppercase mb-4`}>
               Not sure where to start?
             </span>
-            <h2 className={`${myCustomFont.className} text-3xl lg:text-5xl font-serif font-bold text-white max-w-lg leading-tight`}>
+            <h2 className={`${myCustomFont.className} text-3xl lg:text-5xl font-bold text-white max-w-lg leading-tight`}>
               Let's talk about your wellness goals.
             </h2>
           </div>
