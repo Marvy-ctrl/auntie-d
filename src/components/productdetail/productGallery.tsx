@@ -9,7 +9,7 @@ interface ProductGalleryProps {
 
 export default function ProductGallery({ image, name }: ProductGalleryProps) {
   return (
-    <div className="relative w-full aspect-square bg-white rounded-3xl overflow-hidden border border-emerald-100 shadow-sm flex items-center justify-center">
+    <div className="relative w-full aspect-square bg-white overflow-hidden border border-emerald-100 flex items-center justify-center">
       {image ? (
         <Image
           src={image}

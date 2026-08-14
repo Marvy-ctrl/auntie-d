@@ -60,7 +60,7 @@ export default function ProductActions({ product, selectedVariant }: ProductActi
 
   return (
     <div className="flex flex-col sm:flex-row items-center gap-4 w-full">
-      <div className="flex items-center bg-slate-100 border border-slate-200 rounded-xl px-4 py-3 gap-4">
+      <div className="flex items-center bg-slate-100 border border-slate-200 px-4 py-3 gap-4">
         <button
           type="button"
           onClick={handleDecrement}
@@ -83,7 +83,7 @@ export default function ProductActions({ product, selectedVariant }: ProductActi
       <button
         type="button"
         onClick={handleAddToCart}
-        className={`w-full sm:flex-1 px-8 py-4 rounded-xl font-medium shadow-sm transition-all duration-200 flex items-center justify-center gap-2 text-white ${
+        className={`w-full sm:flex-1 px-8 py-4 font-medium transition-all duration-200 flex items-center justify-center gap-2 text-white ${
           isAdded 
             ? 'bg-emerald-600 hover:bg-emerald-700' 
             : 'bg-[#123A2D] hover:bg-[#1a523f]'

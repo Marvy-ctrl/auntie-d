@@ -48,7 +48,7 @@ export default function CheckoutPage() {
             <CheckoutForm cartItems={cartItems} subtotal={subtotal} />
 
             {/* Order Preview Summary */}
-            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-100 shadow-sm h-fit">
+            <div className="bg-white p-6 sm:p-8 border border-slate-100 h-fit">
               <h2 className="text-lg font-bold text-[#123A2D] mb-4">Order Summary</h2>
 
               <div className="space-y-3 mb-6 max-h-60 overflow-y-auto pr-1">

@@ -28,10 +28,10 @@ export default function Footer() {
                 <Link href="/about" className="hover:text-white transition-colors">About Us </Link>
               </li>
               <li>
-                <Link href="/track" className="hover:text-white transition-colors">Track order</Link>
+                <Link href="/track-order" className="hover:text-white transition-colors">Track order</Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
+                <Link href="/#contact" className="hover:text-white transition-colors">Contact</Link>
               </li>
             </ul>
           </div>
@@ -42,21 +42,23 @@ export default function Footer() {
             </h4>
             <ul className="space-y-4 text-sm text-[#E8F3E8]">
               <li>+234 9160677079</li>
-              <li>ibukunmodupe101@gmail.com
-
-</li>
-              <li>Ilorin, Nigeria</li>
+              <li>
+                <Link href="mailto:ibukunmodupe101@gmail.com" className="hover:text-white transition-colors">
+                  ibukunmodupe101@gmail.com
+                </Link>
+              </li>
+              <li>Ilorin, Kwara State, Nigeria</li>
               <li className="text-[#728579] pt-2">Nationwide delivery</li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright & Legal */}
         <div className="pt-8 border-t border-[#234934] flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#728579]">
           <p>© {new Date().getFullYear()} Auntie D Herbal Medicine. All rights reserved.</p>
           <div className="flex gap-4">
             <Link href="/privacy" className="hover:text-[#E8F3E8] transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-[#E8F3E8] transition-colors">Terms of Service</Link>
+            <Link href="/refund-return-policy" className="hover:text-[#E8F3E8] transition-colors">Refund and Returns Policy</Link>
           </div>
         </div>
         

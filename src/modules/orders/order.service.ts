@@ -107,15 +107,18 @@ export async function createOrder(data: CreateOrderInput) {
 }
 
 
-export async function getOrderById(orderId: string){
-  return prisma.order.findUnique({
+export async function getOrderById(identifier: string) {
+  return await prisma.order.findFirst({
     where: {
-      id: orderId
+      OR: [
+        { orderNumber: { equals: identifier.trim(), mode: 'insensitive' } },
+        { id: identifier.trim() },
+      ],
     },
     include: {
-      items: true
-    }
-  })
+      items: true,
+    },
+  });
 }
 
 
@@ -144,16 +147,24 @@ export async function getOrders(filters?: GetOrdersFilters) {
 }
 
 export async function updateOrderStatuses(orderId: string, data: updateOrderInput) {
+    const existingOrder = await getOrderById(orderId);
+
+    if (!existingOrder) {
+        throw new Error("Order not found");
+    }
+
     const updatedOrder = await prisma.order.update({
       where: {
-        id: orderId,
+        id: existingOrder.id,
       },
       data: {
-        status: data.status,
-        paymentStatus: data.paymentStatus
+        ...(data.status && { status: data.status }),
+        ...(data.paymentStatus && { paymentStatus: data.paymentStatus }),
+      },
+      include: {
+        items: true,
       }
-      
-    })
-    return updatedOrder
-
+    });
+    
+    return updatedOrder;
 }

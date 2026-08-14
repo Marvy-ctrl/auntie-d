@@ -73,6 +73,12 @@ export default function Header() {
               About
             </Link>
             <Link
+              href="/track-order"
+              className="text-emerald-900 hover:text-emerald-600 font-medium transition-colors"
+            >
+              Track Order
+            </Link>
+            <Link
               href="/#contact"
               className="text-emerald-900 hover:text-emerald-600 font-medium transition-colors"
             >
