@@ -32,7 +32,7 @@ export default function TermsOfServicePage() {
           <h2 className="text-lg font-bold text-slate-900">
             1. Agreement to Terms
           </h2>
-          <p>
+          <p className="text-[16px]">
             By accessing or using our website and purchasing our products, you
             agree to be bound by these Terms of Service. If you do not agree
             with any part of these terms, please do not use our website or
@@ -44,13 +44,13 @@ export default function TermsOfServicePage() {
           <h2 className="text-lg font-bold text-slate-900">
             2. Products and Pricing
           </h2>
-          <p>
+          <p className="text-[16px]">
             All products displayed on our store are subject to availability.
             Product descriptions, images, sizes, and prices are provided for
             informational and purchasing purposes and may be updated from time
             to time.
           </p>
-          <p>
+          <p className="text-[16px]">
             We reserve the right to modify, suspend, or discontinue any product
             without prior notice. We also reserve the right to correct pricing,
             description, or product information errors when identified.
@@ -61,17 +61,17 @@ export default function TermsOfServicePage() {
           <h2 className="text-lg font-bold text-slate-900">
             3. Orders and Payments
           </h2>
-          <p>
+          <p className="text-[16px]">
             When placing an order, you agree to provide accurate and complete
             information, including your name, contact details, delivery
             address, and any other information required to process your order.
           </p>
-          <p>
+          <p className="text-[16px]">
             An order may be declined or cancelled if the requested product is
             unavailable, the information provided is inaccurate, or a
             fraudulent, unauthorized, or illegal transaction is suspected.
           </p>
-          <p>
+          <p className="text-[16px]">
             Orders are considered confirmed only after the required payment and
             order verification process has been completed.
           </p>
@@ -81,12 +81,12 @@ export default function TermsOfServicePage() {
           <h2 className="text-lg font-bold text-slate-900">
             4. Product Use and Health Disclaimer
           </h2>
-          <p>
+          <p className="text-[16px]">
             Our products are provided for their stated intended use. Customers
             are responsible for reading product descriptions, labels,
             directions, and applicable warnings before using any product.
           </p>
-          <p>
+          <p className="text-[16px]">
             Our products and information provided on this website are not
             intended to replace professional medical advice, diagnosis, or
             treatment. If you have a medical condition, are taking medication,
@@ -94,7 +94,7 @@ export default function TermsOfServicePage() {
             product, you should seek appropriate professional advice before
             use.
           </p>
-          <p>
+          <p className="text-[16px]">
             We are not responsible for adverse effects resulting from improper
             use, failure to follow product instructions, or use contrary to
             applicable warnings.
@@ -105,12 +105,12 @@ export default function TermsOfServicePage() {
           <h2 className="text-lg font-bold text-slate-900">
             5. Delivery
           </h2>
-          <p>
+          <p className="text-[16px]">
             Delivery times may vary depending on the customer's location,
             delivery arrangements, availability of products, and other
             circumstances outside our control.
           </p>
-          <p>
+          <p className="text-[16px]">
             Customers are responsible for providing accurate delivery
             information and being available to receive their orders. Delays
             caused by incorrect addresses, unavailable recipients, or other
@@ -122,7 +122,7 @@ export default function TermsOfServicePage() {
           <h2 className="text-lg font-bold text-slate-900">
             6. Returns and Refunds
           </h2>
-          <p>
+          <p className="text-[16px]">
             Returns, exchanges, and refunds are subject to our Refund and
             Returns Policy. Customers should review that policy before placing
             an order.
@@ -133,7 +133,7 @@ export default function TermsOfServicePage() {
           <h2 className="text-lg font-bold text-slate-900">
             7. Website Use
           </h2>
-          <p>
+          <p className="text-[16px]">
             You agree not to misuse our website, attempt to gain unauthorized
             access to our systems, interfere with the operation of the website,
             or use our services for fraudulent or unlawful purposes.
@@ -144,7 +144,7 @@ export default function TermsOfServicePage() {
           <h2 className="text-lg font-bold text-slate-900">
             8. Intellectual Property
           </h2>
-          <p>
+          <p className="text-[16px]">
             Unless otherwise stated, the content on this website, including
             text, images, logos, branding, graphics, and other materials, is
             owned by or used with permission by Auntie-D and may not be copied,
@@ -156,12 +156,12 @@ export default function TermsOfServicePage() {
           <h2 className="text-lg font-bold text-slate-900">
             9. Limitation of Liability
           </h2>
-          <p>
+          <p className="text-[16px]">
             We strive to ensure that product information and website content
             are accurate and up to date. However, we do not guarantee that all
             information will always be complete, accurate, or error-free.
           </p>
-          <p>
+          <p className="text-[16px]">
             To the extent permitted by applicable law, Auntie-D will not be
             responsible for losses or damages resulting from improper product
             use, inaccurate information provided by a customer, or circumstances
@@ -173,7 +173,7 @@ export default function TermsOfServicePage() {
           <h2 className="text-lg font-bold text-slate-900">
             10. Changes to These Terms
           </h2>
-          <p>
+          <p className="text-[16px]">
             We may update these Terms of Service from time to time to reflect
             changes to our services, products, policies, or applicable
             requirements. Updated terms will be posted on this page with a
@@ -185,7 +185,7 @@ export default function TermsOfServicePage() {
           <h2 className="text-lg font-bold text-slate-900">
             11. Contact Us
           </h2>
-          <p>
+          <p className="text-[16px]">
             If you have questions about these Terms of Service, our products,
             or an order, please contact us using the contact information
             provided on our website.

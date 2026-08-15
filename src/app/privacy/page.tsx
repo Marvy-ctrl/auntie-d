@@ -33,7 +33,7 @@ export default function PrivacyPolicyPage() {
             <h2 className="text-lg font-bold text-slate-900">
               1. Introduction
             </h2>
-            <p>
+            <p className="text-[16px]">
               Welcome to Auntie-D. We respect your privacy and are committed to
               protecting your personal information. This Privacy Policy
               explains what information we collect, how we use it, how we
@@ -46,26 +46,26 @@ export default function PrivacyPolicyPage() {
             <h2 className="text-lg font-bold text-slate-900">
               2. Information We Collect
             </h2>
-            <p>
+            <p className="text-[16px]">
               We may collect information that you provide when placing an order,
               contacting us, or interacting with our website. This may include:
             </p>
 
             <ul className="list-disc pl-5 space-y-1">
-              <li>
+              <li className="text-[16px]">
                 <strong>Identity Data:</strong> your name and other information
                 you provide when placing an order.
               </li>
-              <li>
+              <li className="text-[16px]">
                 <strong>Contact Data:</strong> your phone number, email
                 address, and delivery address.
               </li>
-              <li>
+              <li className="text-[16px]">
                 <strong>Transaction Data:</strong> information about products
                 you purchase, order details, payment status, and related
                 transaction information.
               </li>
-              <li>
+              <li className="text-[16px]">
                 <strong>Communication Data:</strong> information you provide
                 when you contact us regarding an order, product, or service.
               </li>
@@ -78,26 +78,26 @@ export default function PrivacyPolicyPage() {
               3. How We Use Your Information
             </h2>
 
-            <p>
+            <p className="text-[16px]">
               We use the information we collect only where necessary for
               legitimate business purposes, including:
             </p>
 
             <ul className="list-disc pl-5 space-y-1">
-              <li>To process, confirm, and deliver your orders.</li>
-              <li>To communicate with you about your orders and enquiries.</li>
-              <li>To process and verify payments where applicable.</li>
-              <li>
+              <li className="text-[16px]">To process, confirm, and deliver your orders.</li>
+              <li className="text-[16px]">To communicate with you about your orders and enquiries.</li>
+              <li className="text-[16px]">To process and verify payments where applicable.</li>
+              <li className="text-[16px]">
                 To provide customer support and respond to your requests.
               </li>
-              <li>
+              <li className="text-[16px]">
                 To maintain, secure, and improve our website and services.
               </li>
-              <li>
+              <li className="text-[16px]">
                 To prevent fraud, unauthorized activity, and misuse of our
                 services.
               </li>
-              <li>
+              <li className="text-[16px]">
                 To comply with applicable legal and regulatory requirements.
               </li>
             </ul>
@@ -108,7 +108,7 @@ export default function PrivacyPolicyPage() {
               4. How We Protect Your Information
             </h2>
 
-            <p>
+            <p className="text-[16px]">
               We take reasonable technical and organizational measures to
               protect your personal information against unauthorized access,
               alteration, disclosure, loss, or misuse.
@@ -120,7 +120,7 @@ export default function PrivacyPolicyPage() {
               5. Sharing Your Information
             </h2>
 
-            <p>
+            <p className="text-[16px]">
               We do not sell or rent your personal information. We may share
               necessary information with trusted service providers where
               required to operate our business, process orders, process
@@ -128,7 +128,7 @@ export default function PrivacyPolicyPage() {
               comply with legal obligations.
             </p>
 
-            <p>
+            <p className="text-[16px]">
               We only share information that is reasonably necessary for the
               relevant service or purpose.
             </p>
@@ -139,7 +139,7 @@ export default function PrivacyPolicyPage() {
               6. Data Retention
             </h2>
 
-            <p>
+            <p className="text-[16px]">
               We retain personal information only for as long as reasonably
               necessary to fulfil the purposes for which it was collected,
               including processing orders, maintaining business records,
@@ -153,14 +153,14 @@ export default function PrivacyPolicyPage() {
               7. Cookies and Website Technologies
             </h2>
 
-            <p>
+            <p className="text-[16px]">
               Our website may use cookies or similar technologies to support
               essential website functionality, improve performance, understand
               how visitors use the website, and provide a better user
               experience.
             </p>
 
-            <p>
+            <p className="text-[16px]">
               You may be able to control or disable cookies through your
               browser settings. Disabling certain cookies may affect some
               website functionality.
@@ -172,7 +172,7 @@ export default function PrivacyPolicyPage() {
               8. Your Privacy Rights
             </h2>
 
-            <p>
+            <p className="text-[16px]">
               Depending on applicable law, you may have rights regarding your
               personal information, including the right to request access to,
               correction of, or deletion of certain personal information we

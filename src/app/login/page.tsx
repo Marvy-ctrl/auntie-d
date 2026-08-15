@@ -37,7 +37,7 @@ export default function AdminLoginPage() {
 
       setSuccessMessage("Login successful");
       setTimeout(() => {
-        router.push("/admin/orders");
+        router.push("/admin");
       }, 1500);
     } catch (err: any) {
       console.error("Login error:", err);

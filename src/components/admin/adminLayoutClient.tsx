@@ -24,7 +24,7 @@ export default function AdminLayoutClient({ children }: { children: React.ReactN
       await signOut({
         fetchOptions: {
           onSuccess: () => {
-            router.push("/admin/login");
+            router.push("/login");
           },
         },
       });

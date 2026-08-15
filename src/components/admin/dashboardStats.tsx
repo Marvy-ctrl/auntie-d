@@ -25,7 +25,7 @@ export default function DashboardStats() {
     revenue: 0,
     orders: 0,
     products: 0,
-    customers: 0,
+    // customers: 0,
   });
   const [isLoading, setIsLoading] = useState(true);
 
@@ -44,7 +44,7 @@ export default function DashboardStats() {
             revenue: data.revenue || 0,
             orders: data.orders || 0,
             products: data.products || 0,
-            customers: data.customers || 0,
+            // customers: data.customers || 0,
           });
         }
       } catch (err) {
@@ -73,17 +73,17 @@ export default function DashboardStats() {
       title: "Active Products",
       value: stats.products.toLocaleString(),
     },
-    {
-      id: "customers",
-      title: "Total Customers",
-      value: stats.customers.toLocaleString(),
-    },
+    // {
+    //   id: "customers",
+    //   title: "Total Customers",
+    //   value: stats.customers.toLocaleString(),
+    // },
   ];
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-        {[1, 2, 3, 4].map((i) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+        {[1, 2, 3].map((i) => (
           <div key={i} className="bg-white p-6 rounded-sm border border-slate-100 flex items-center justify-center min-h-[100px]">
             <Loader2 className="w-5 h-5 animate-spin text-slate-400" />
           </div>
@@ -93,7 +93,7 @@ export default function DashboardStats() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
       {STATS_ITEMS.map((stat) => (
         <StatCard
           key={stat.id}
