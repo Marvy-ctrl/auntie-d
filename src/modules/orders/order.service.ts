@@ -69,7 +69,7 @@ export async function createOrder(data: CreateOrderInput) {
       variantLabel: variantLabel ?? "",
       quantity: item.quantity,
       unitPrice,
-      lineTotal,
+      lineTotal
     });
   }
     const orderNumber = generateOrderNumber();

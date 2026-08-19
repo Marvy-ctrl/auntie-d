@@ -1,11 +1,13 @@
-"use client"
+"use client";
+
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { ShoppingCart, Leaf, Search, Menu } from "lucide-react";
+import { ShoppingCart, Leaf, Search, Menu, X } from "lucide-react";
 import Image from "next/image";
 
 export default function Header() {
   const [cartCount, setCartCount] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const updateCartCount = () => {
@@ -27,13 +29,18 @@ export default function Header() {
       window.removeEventListener('storage', updateCartCount);
     };
   }, []);
+
   return (
     <header className="sticky top-0 z-50 bg-[#FAFAF7]/90 backdrop-blur-md border-b border-green-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Mobile Menu */}
-          <button className="md:hidden p-2 text-emerald-800">
-            <Menu className="w-6 h-6" />
+          {/* Mobile Menu Button */}
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 text-emerald-800 hover:text-emerald-600 transition-colors"
+            aria-label="Toggle mobile menu"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
 
           <div className="flex-shrink-0 flex items-center gap-2 md-gap-4">
@@ -54,7 +61,7 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-             <Link
+            <Link
               href="/"
               className="text-emerald-900 hover:text-emerald-600 font-medium transition-colors"
             >
@@ -87,18 +94,60 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center space-x-5">
-            <button className="text-emerald-800 hover:text-emerald-600 hidden sm:block"></button>
-           <Link href="/cart" className="relative p-2 text-[#123A2D] hover:bg-slate-50 rounded-full transition-colors">
-          <ShoppingCart className="w-6 h-6" />
-          {cartCount > 0 && (
-            <span className="absolute -top-1 -right-1 bg-emerald-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-sm">
-              {cartCount}
-            </span>
-          )}
-        </Link>
+            <Link href="/cart" className="relative p-2 text-[#123A2D] hover:bg-slate-50 rounded-full transition-colors">
+              <ShoppingCart className="w-6 h-6" />
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-emerald-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-sm">
+                  {cartCount}
+                </span>
+              )}
+            </Link>
           </div>
         </div>
       </div>
+
+      {/* Mobile Navigation Menu Dropdown */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-[#FAFAF7] border-b border-green-100 px-6 py-4 shadow-lg animate-in slide-in-from-top duration-200">
+          <nav className="flex flex-col space-y-4">
+            <Link
+              href="/"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-emerald-900 hover:text-emerald-600 font-medium transition-colors text-lg"
+            >
+              Home
+            </Link>
+            <Link
+              href="/shop"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-emerald-900 hover:text-emerald-600 font-medium transition-colors text-lg"
+            >
+              Shop
+            </Link>
+            <Link
+              href="/about"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-emerald-900 hover:text-emerald-600 font-medium transition-colors text-lg"
+            >
+              About
+            </Link>
+            <Link
+              href="/track-order"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-emerald-900 hover:text-emerald-600 font-medium transition-colors text-lg"
+            >
+              Track Order
+            </Link>
+            <Link
+              href="/#contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-emerald-900 hover:text-emerald-600 font-medium transition-colors text-lg"
+            >
+              Contact Us
+            </Link>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
