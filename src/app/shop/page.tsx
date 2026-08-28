@@ -90,14 +90,14 @@ export default function ShopPage() {
 
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 sm:gap-5 lg:gap-6 mb-8 sm:mb-10 lg:mb-12 border-y border-[#D2DAD3] py-4">
             
-            <div className="flex items-center gap-2 overflow-x-auto w-full lg:w-auto pb-1 lg:pb-0 scrollbar-hide">
+            <div className="flex min-w-0 w-full items-center gap-3 overflow-x-auto pb-2 lg:w-auto lg:pb-0 scrollbar-hide overscroll-x-contain">
               <button
                 onClick={() => {
                   setProducts([]);
                   setPage(1);
                   setSelectedCategory("all");
                 }}
-                className={`px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium whitespace-nowrap border ${
+                className={`shrink-0 px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium whitespace-nowrap border ${
                   selectedCategory === "all"
                     ? "bg-[#123A2D] text-white border-[#123A2D]"
                     : "bg-transparent text-[#65736C] border-[#D2DAD3] hover:bg-[#EDF2E8]"
@@ -114,7 +114,7 @@ export default function ShopPage() {
                     setPage(1);
                     setSelectedCategory(cat.id);
                   }}
-                  className={`px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium whitespace-nowrap border ${
+                  className={`shrink-0 px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium whitespace-nowrap border ${
                     selectedCategory === cat.id
                       ? "bg-[#123A2D] text-white border-[#123A2D]"
                       : "bg-transparent text-[#65736C] border-[#D2DAD3] hover:bg-[#EDF2E8]"
