@@ -16,8 +16,11 @@ import {
 import DeleteProductModal from "@/src/components/admin/deleteProductModal";
 
 export default function AdminProductsPage() {
+  const pageSize = 10;
   const [products, setProducts] = useState<any[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [page, setPage] = useState(1);
+  const [pagination, setPagination] = useState({ total: 0, totalPages: 1 });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -25,20 +28,24 @@ export default function AdminProductsPage() {
   const [productToDelete, setProductToDelete] = useState<any | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
-
   // Fetch all products on mount
   const fetchProducts = async () => {
     setIsLoading(true);
     setError("");
     try {
-      const response = await fetch(`${baseUrl}/api/products`);
+      const params = new URLSearchParams({ page: String(page), limit: String(pageSize) });
+      if (searchQuery.trim()) params.set("search", searchQuery.trim());
+      const response = await fetch(`/api/products?${params.toString()}`);
       if (!response.ok) throw new Error("Failed to load products.");
 
       const responseData = await response.json();
       const productList = responseData.data || responseData.products || responseData;
 
       setProducts(Array.isArray(productList) ? productList : []);
+      setPagination({
+        total: responseData.pagination?.total || 0,
+        totalPages: responseData.pagination?.totalPages || 1,
+      });
     } catch (err: any) {
       setError(err.message || "Could not connect");
     } finally {
@@ -47,8 +54,9 @@ export default function AdminProductsPage() {
   };
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    const timeout = window.setTimeout(fetchProducts, searchQuery ? 300 : 0);
+    return () => window.clearTimeout(timeout);
+  }, [page, searchQuery]);
 
   // Handle product deletion
   const handleDeleteProduct = async () => {
@@ -56,15 +64,18 @@ export default function AdminProductsPage() {
     setIsDeleting(true);
 
     try {
-      const response = await fetch(`${baseUrl}/api/products/${productToDelete.id}`, {
+      const response = await fetch(`/api/products/${productToDelete.id}`, {
         method: "DELETE",
       });
 
       if (!response.ok) throw new Error("Failed to delete product.");
 
-      // Refresh list
-      setProducts(products.filter((p) => p.id !== productToDelete.id));
       setProductToDelete(null);
+      if (products.length === 1 && page > 1) {
+        setPage((current) => current - 1);
+      } else {
+        await fetchProducts();
+      }
     } catch (err: any) {
       alert(err.message || "Could not delete product.");
     } finally {
@@ -72,13 +83,8 @@ export default function AdminProductsPage() {
     }
   };
 
-  // Filter products based on search input
-  const filteredProducts = products.filter((product) => {
-    const term = searchQuery.toLowerCase();
-    const nameMatch = product.name?.toLowerCase().includes(term);
-    const categoryMatch = product.category?.name?.toLowerCase().includes(term);
-    return nameMatch || categoryMatch;
-  });
+  const firstItem = pagination.total === 0 ? 0 : (page - 1) * pageSize + 1;
+  const lastItem = Math.min(page * pageSize, pagination.total);
 
   return (
     <div className="max-w-6xl mx-auto space-y-8 pb-12">
@@ -109,7 +115,10 @@ export default function AdminProductsPage() {
           type="text"
           placeholder="Search products by name or category..."
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e) => {
+            setSearchQuery(e.target.value);
+            setPage(1);
+          }}
           className="w-full bg-transparent border-none focus:outline-none text-sm text-slate-800 placeholder-slate-400"
         />
       </div>
@@ -128,7 +137,7 @@ export default function AdminProductsPage() {
             <Loader2 className="w-8 h-8 animate-spin text-[#1A3626] mb-2" />
             <p className="text-sm text-slate-500">Loading products...</p>
           </div>
-        ) : filteredProducts.length === 0 ? (
+        ) : products.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
            
             <h3 className="text-lg font-bold text-slate-900 mb-1">
@@ -161,7 +170,7 @@ export default function AdminProductsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
-                {filteredProducts.map((product) => (
+                {products.map((product) => (
                   <tr key={product.id} className="hover:bg-slate-50/50 transition-colors">
                     
                     {/* Image & Product Name */}
@@ -237,6 +246,31 @@ export default function AdminProductsPage() {
                 ))}
               </tbody>
             </table>
+          </div>
+        )}
+
+        {!isLoading && products.length > 0 && (
+          <div className="flex flex-col gap-3 border-t border-[#D9DFDA] px-4 py-4 text-sm text-[#66776E] sm:flex-row sm:items-center sm:justify-between">
+            <p>Showing {firstItem}–{lastItem} of {pagination.total} products</p>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setPage((current) => Math.max(1, current - 1))}
+                disabled={page === 1}
+                className="h-9 border border-[#CCD7CA] px-3 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                Previous
+              </button>
+              <span className="min-w-20 text-center text-xs font-semibold">Page {page} of {pagination.totalPages}</span>
+              <button
+                type="button"
+                onClick={() => setPage((current) => Math.min(pagination.totalPages, current + 1))}
+                disabled={page >= pagination.totalPages}
+                className="h-9 border border-[#CCD7CA] px-3 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                Next
+              </button>
+            </div>
           </div>
         )}
       </div>

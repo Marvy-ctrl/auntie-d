@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -41,13 +42,22 @@ export default function Footer() {
               Contact
             </h4>
             <ul className="space-y-4 text-sm text-[#E8F3E8]">
-              <li>+234 9160677079</li>
-              <li>
-                <Link href="mailto:ibukunmodupe101@gmail.com" className="hover:text-white transition-colors">
+              <li className="flex items-center gap-3">
+                <Phone className="h-4 w-4 shrink-0 text-[#A9B9B0]" aria-hidden="true" />
+                <Link href="tel:+2349160677079" className="hover:text-white transition-colors">
+                  +234 9160677079
+                </Link>
+              </li>
+              <li className="flex items-center gap-3">
+                <Mail className="h-4 w-4 shrink-0 text-[#A9B9B0]" aria-hidden="true" />
+                <Link href="mailto:ibukunmodupe101@gmail.com" className="break-all hover:text-white transition-colors">
                   ibukunmodupe101@gmail.com
                 </Link>
               </li>
-              <li>Ilorin, Kwara State, Nigeria</li>
+              <li className="flex items-start gap-3">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#A9B9B0]" aria-hidden="true" />
+                <span>Ilorin, Kwara State, Nigeria</span>
+              </li>
               <li className="text-[#728579] pt-2">Nationwide delivery</li>
             </ul>
           </div>

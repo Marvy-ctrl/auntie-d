@@ -233,10 +233,10 @@ export default function AdminOrderDetailsPage() {
 
                         <div className="grid grid-cols-2 gap-2 pt-2">
                             {[
-                                { label: 'Pending', value: 'PENDING' },
+                                { label: 'Unpaid', value: 'UNPAID' },
                                 { label: 'Paid', value: 'PAID' },
                             ].map((pay) => {
-                                const isPayActive = (order.paymentStatus || 'PENDING') === pay.value;
+                                const isPayActive = (order.paymentStatus || 'UNPAID') === pay.value;
                                 return (
                                     <button
                                         key={pay.value}

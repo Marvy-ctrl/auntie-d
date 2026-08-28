@@ -82,7 +82,7 @@ export default function TrackOrderPage() {
       <main className="flex-grow py-8 sm:py-12 lg:py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <Link href="/" className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#123A2D] mb-8 transition-colors">
+          <Link href="/" className="inline-flex items-center gap-1.5 text-xs font-bold text-[#123A2D] mb-8 transition-colors">
             <ArrowLeft className="w-4 h-4" /> Back to Home
           </Link>
 
@@ -129,9 +129,9 @@ export default function TrackOrderPage() {
           {searched && orderDetails && (
             <div className="bg-[#FFFDF7] p-6 sm:p-8 space-y-6 animate-fadeIn">
               
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-200 gap-4">
-                <p className="text-xs font-mono font-bold tracking-wide text-slate-500 uppercase">{orderDetails.ref}</p>
-                <div className="inline-flex items-center px-4 py-1.5  text-emerald-800 text-xs font-bold w-fit">
+              <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-b border-slate-200 pb-6">
+                <p className="min-w-0 break-all font-mono text-xs font-bold uppercase tracking-wide text-slate-500">{orderDetails.ref}</p>
+                <div className="max-w-36 text-right text-xs font-bold uppercase leading-5 text-emerald-800">
                   {orderDetails.status.replace(/_/g, ' ')}
                 </div>
               </div>

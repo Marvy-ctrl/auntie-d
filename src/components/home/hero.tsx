@@ -30,7 +30,7 @@ export default function Hero() {
     <section className="bg-[#FDFCF8] border-b border-[#D2DAD3]">
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:min-h-[670px]">
           
-          <div className="hero-copy flex flex-col items-start justify-center text-left order-2 lg:order-1 py-14 lg:py-20">
+          <div className="hero-copy flex flex-col items-start justify-center text-left order-1 py-14 lg:py-20">
           
             <h1 className="text-4xl min-[400px]:text-5xl lg:text-7xl font-serif font-medium text-[#1A3626] mb-7 leading-[1.02] tracking-tight">
              <span className={`${myCustomFont.className} text-[#123A2D] font-bold`}> Feel better,</span><br /><span className={`${myCustomFont.className} italic text-[#78814D] `}>naturally</span>.
@@ -77,7 +77,7 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="relative w-full min-h-[360px] sm:min-h-[480px] lg:min-h-[670px] bg-[#DCE7D6] overflow-hidden order-1 lg:order-2 flex items-center justify-center">
+          <div className="relative w-full min-h-[360px] sm:min-h-[480px] lg:min-h-[670px] bg-[#DCE7D6] overflow-hidden order-2 flex items-center justify-center">
             <div className="absolute w-[82%] aspect-square bg-[#E7ECDC]" style={{ borderRadius: '50%' }} />
             <div className="absolute w-[62%] aspect-square bg-[#F3EDCF]" style={{ borderRadius: '50%' }} />
             <BotanicalSprig className="-left-7 bottom-4 sm:left-2 sm:bottom-10 rotate-6" />

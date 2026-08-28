@@ -1,7 +1,7 @@
 import { generateOrderNumber } from "@/src/lib/utils";
 import { CreateOrderInput, updateOrderInput } from "./order.schema";
 import {prisma} from "@/src/lib/prisma"
-import { OrderStatus, PaymentStatus } from "@/src/generated/prisma";
+import { OrderStatus, PaymentStatus, Prisma } from "@/src/generated/prisma";
 
 
 export async function createOrder(data: CreateOrderInput) {
@@ -144,6 +144,47 @@ export async function getOrders(filters?: GetOrdersFilters) {
         }
     })
     return orders
+}
+
+export async function getOrdersPage({
+  page,
+  limit,
+  search,
+  status,
+  paymentStatus,
+}: {
+  page: number;
+  limit: number;
+  search?: string;
+  status?: OrderStatus;
+  paymentStatus?: PaymentStatus;
+}) {
+  const where: Prisma.OrderWhereInput = {
+    ...(status ? { status } : {}),
+    ...(paymentStatus ? { paymentStatus } : {}),
+    ...(search
+      ? {
+          OR: [
+            { orderNumber: { contains: search, mode: "insensitive" } },
+            { customerName: { contains: search, mode: "insensitive" } },
+            { customerEmail: { contains: search, mode: "insensitive" } },
+          ],
+        }
+      : {}),
+  };
+
+  const [data, total] = await prisma.$transaction([
+    prisma.order.findMany({
+      where,
+      orderBy: { createdAt: "desc" },
+      include: { items: true },
+      skip: (page - 1) * limit,
+      take: limit,
+    }),
+    prisma.order.count({ where }),
+  ]);
+
+  return { data, total };
 }
 
 export async function updateOrderStatuses(orderId: string, data: updateOrderInput) {

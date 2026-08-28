@@ -8,24 +8,22 @@ export default function ProductGrid() {
   const [products, setProducts] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
-
   useEffect(() => {
     const fetchFeaturedProducts = async () => {
       try {
-        const response = await fetch(`${baseUrl}/api/products`);
+        const response = await fetch("/api/products?featured=true", {
+          cache: "no-store",
+        });
         if (!response.ok) throw new Error("Failed to fetch products");
 
         const data = await response.json();
         const allProducts = data.data || data.products || data;
 
-        // Filter for featured products from your database
-        const featured = Array.isArray(allProducts)
-          ? allProducts.filter((p: any) => p.featured === true)
+        const featuredProducts = Array.isArray(allProducts)
+          ? allProducts.filter((product) => product.featured === true)
           : [];
-          console.log("Featured Products Fetched:", featured);
 
-        setProducts(featured);
+        setProducts(featuredProducts);
       } catch (err) {
         console.error("Error loading products:", err);
       } finally {
@@ -34,7 +32,7 @@ export default function ProductGrid() {
     };
 
     fetchFeaturedProducts();
-  }, [baseUrl]);
+  }, []);
 
   if (isLoading) {
     return (

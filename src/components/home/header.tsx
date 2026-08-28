@@ -53,7 +53,7 @@ export default function Header() {
             />
             <Link
               href="/"
-              className="font-serif text-xl sm:text-2xl font-bold text-[#123A2D] tracking-tight"
+              className="font-serif text-xl sm:text-2xl font-bold text-[#123A2D] tracking-tight hidden md:block"
             >
               Auntie-D Herbs
             </Link>

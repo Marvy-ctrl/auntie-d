@@ -71,9 +71,9 @@ export default function Features() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-0">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-4 lg:gap-0">
             {/* Review 1 */}
-            <div className="flex flex-col md:pr-10">
+            <div className="flex flex-col lg:pr-8">
              
               <p className="text-[#1A3626] text-lg leading-relaxed mb-6 flex-grow italic">
                 "The hormonal imbalance product really worked. My period came with ease  clean and odourless"
@@ -82,7 +82,7 @@ export default function Features() {
             </div>
 
             {/* Review 2 */}
-            <div className="flex flex-col md:px-10 md:border-l md:border-[#A8B7AC]">
+            <div className="flex flex-col lg:border-l lg:border-[#A8B7AC] lg:px-8">
             
               <p className="text-[#1A3626] text-lg leading-relaxed mb-6 flex-grow italic">
                 "The infection flusher really is a game changer. My discharge is now back to normal"
@@ -90,12 +90,19 @@ export default function Features() {
               <p className="text-[#728579] font-medium text-sm">Anonymous.</p>
             </div>
 
-            <div className="flex flex-col md:pl-10 md:border-l md:border-[#A8B7AC]">
+            <div className="flex flex-col lg:border-l lg:border-[#A8B7AC] lg:px-8">
              
               <p className="text-[#1A3626] text-lg leading-relaxed mb-6 flex-grow italic">
                 "The hemorrhoid herb worked well. I can now use the toilet in peace."
               </p>
               <p className="text-[#728579] font-medium text-sm"> Anonymous</p>
+            </div>
+
+            <div className="flex flex-col lg:border-l lg:border-[#A8B7AC] lg:pl-8">
+              <p className="text-[#1A3626] text-lg leading-relaxed mb-6 flex-grow italic">
+                "I asked her to repeat the test for confirmation, and it showed that the lump was no longer there. Thank you so much."
+              </p>
+              <p className="text-[#728579] font-medium text-sm">Anonymous.</p>
             </div>
           </div>
 

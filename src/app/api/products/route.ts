@@ -1,8 +1,32 @@
 import { NextResponse } from "next/server";
 import { uploadToCloudinary } from "@/src/lib/cloudinary";
-import { createProduct, getProducts } from "@/src/modules/products/product.service";
+import { createProduct, getFeaturedProducts, getProducts, getProductsPage } from "@/src/modules/products/product.service";
 
-export async function GET() {
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const requestedPage = searchParams.get("page");
+  const featuredParam = searchParams.get("featured");
+
+  if (requestedPage) {
+    const page = Math.max(1, Number.parseInt(requestedPage, 10) || 1);
+    const limit = Math.min(50, Math.max(1, Number.parseInt(searchParams.get("limit") || "10", 10) || 10));
+    const search = searchParams.get("search")?.trim() || undefined;
+    const categoryId = searchParams.get("categoryId")?.trim() || undefined;
+    const featured = featuredParam === null ? undefined : featuredParam === "true";
+    const result = await getProductsPage({ page, limit, search, categoryId, featured });
+    const totalPages = Math.max(1, Math.ceil(result.total / limit));
+
+    return Response.json({
+      data: result.data,
+      pagination: { page, limit, total: result.total, totalPages },
+    });
+  }
+
+  if (featuredParam === "true") {
+    const data = await getFeaturedProducts();
+    return Response.json({ data });
+  }
+
   const data = await getProducts();
   return Response.json({ data });
 }

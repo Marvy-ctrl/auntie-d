@@ -6,17 +6,26 @@ import { Search, Eye, ShoppingBag } from "lucide-react";
 import { myCustomFont } from "../../fonts/fonts";
 
 export default function OrdersPage() {
+  const pageSize = 10;
   const [orders, setOrders] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedStatusFilter, setSelectedStatusFilter] = useState("ALL");
-
-  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "";
+  const [selectedPaymentFilter, setSelectedPaymentFilter] = useState("ALL");
+  const [page, setPage] = useState(1);
+  const [pagination, setPagination] = useState({ total: 0, totalPages: 1 });
 
   useEffect(() => {
     async function fetchOrders() {
+      setIsLoading(true);
       try {
-        const res = await fetch(`${baseUrl}/api/orders`);
+        const params = new URLSearchParams({ page: String(page), limit: String(pageSize) });
+        if (searchQuery.trim()) params.set("search", searchQuery.trim());
+        if (selectedStatusFilter !== "ALL") params.set("status", selectedStatusFilter);
+        if (selectedPaymentFilter !== "ALL") params.set("paymentStatus", selectedPaymentFilter);
+        const res = await fetch(`/api/orders?${params.toString()}`, {
+          cache: "no-store",
+        });
         if (res.ok) {
           const json = await res.json();
           // Extract from your API's { data: orders } response wrapper
@@ -54,8 +63,13 @@ export default function OrdersPage() {
                           ? "Cancelled"
                           : "Awaiting Confirmation",
             rawStatus: order.status || "AWAITING_CONFIRMATION",
+            paymentStatus: order.paymentStatus || "UNPAID",
           }));
           setOrders(mapped);
+          setPagination({
+            total: json.pagination?.total || 0,
+            totalPages: json.pagination?.totalPages || 1,
+          });
         }
       } catch (err) {
         console.error("Failed to fetch orders:", err);
@@ -64,20 +78,12 @@ export default function OrdersPage() {
       }
     }
 
-    fetchOrders();
-  }, [baseUrl]);
+    const timeout = window.setTimeout(fetchOrders, searchQuery ? 300 : 0);
+    return () => window.clearTimeout(timeout);
+  }, [page, searchQuery, selectedStatusFilter, selectedPaymentFilter]);
 
-  // Filter logic for search and status dropdown
-  const filteredOrders = orders.filter((order) => {
-    const matchesSearch = 
-      order.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      order.customer.toLowerCase().includes(searchQuery.toLowerCase());
-    
-    const matchesStatus = 
-      selectedStatusFilter === "ALL" || order.rawStatus === selectedStatusFilter;
-
-    return matchesSearch && matchesStatus;
-  });
+  const firstItem = pagination.total === 0 ? 0 : (page - 1) * pageSize + 1;
+  const lastItem = Math.min(page * pageSize, pagination.total);
 
   if (isLoading) {
     return (
@@ -99,7 +105,7 @@ export default function OrdersPage() {
       </div>
 
       <div className="bg-white border border-[#D9DFDA] overflow-hidden font-sans">
-        {orders.length === 0 ? (
+        {orders.length === 0 && !searchQuery && selectedStatusFilter === "ALL" && selectedPaymentFilter === "ALL" ? (
           <div className="flex flex-col items-center justify-center py-20 px-4 text-center">
             {/* <ShoppingBag className="w-12 h-12 text-slate-300 mb-4" /> */}
             <h3 className="text-xl font-bold text-slate-900 mb-2">
@@ -119,27 +125,48 @@ export default function OrdersPage() {
                 <input
                   type="text"
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    setPage(1);
+                  }}
                   placeholder="Search order ID or customer..."
                   className="w-full pl-9 pr-4 py-2 border border-[#CCD7CA] text-sm focus:outline-none focus:border-[#1A3626]"
                 />
               </div>
 
-              {/* Status Filter */}
-              <select
-                value={selectedStatusFilter}
-                onChange={(e) => setSelectedStatusFilter(e.target.value)}
-                className="px-4 py-2 border border-[#CCD7CA] text-xs font-bold text-[#0D3B2E] focus:outline-none focus:border-[#1A3626]"
-              >
-                <option value="ALL">All Orders</option>
-                <option value="AWAITING_CONFIRMATION">Awaiting Confirmation</option>
-                <option value="CONFIRMED">Confirmed</option>
-                <option value="PROCESSING">Processing</option>
-                <option value="READY_FOR_DISPATCH">Ready for Dispatch</option>
-                <option value="DISPATCHED">Dispatched</option>
-                <option value="DELIVERED">Delivered</option>
-                <option value="CANCELLED">Cancelled</option>
-              </select>
+              <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+                <select
+                  value={selectedStatusFilter}
+                  onChange={(e) => {
+                    setSelectedStatusFilter(e.target.value);
+                    setPage(1);
+                  }}
+                  aria-label="Filter by fulfilment status"
+                  className="h-10 border border-[#CCD7CA] px-4 text-xs font-bold text-[#0D3B2E] focus:border-[#1A3626] focus:outline-none"
+                >
+                  <option value="ALL">All fulfilment statuses</option>
+                  <option value="AWAITING_CONFIRMATION">Awaiting Confirmation</option>
+                  <option value="CONFIRMED">Confirmed</option>
+                  <option value="PROCESSING">Processing</option>
+                  <option value="READY_FOR_DISPATCH">Ready for Dispatch</option>
+                  <option value="DISPATCHED">Dispatched</option>
+                  <option value="DELIVERED">Delivered</option>
+                  <option value="CANCELLED">Cancelled</option>
+                </select>
+                <select
+                  value={selectedPaymentFilter}
+                  onChange={(e) => {
+                    setSelectedPaymentFilter(e.target.value);
+                    setPage(1);
+                  }}
+                  aria-label="Filter by payment status"
+                  className="h-10 border border-[#CCD7CA] px-4 text-xs font-bold text-[#0D3B2E] focus:border-[#1A3626] focus:outline-none"
+                >
+                  <option value="ALL">All payment statuses</option>
+                  <option value="UNPAID">Unpaid</option>
+                  <option value="PAID">Paid</option>
+                </select>
+              </div>
             </div>
 
             {/* Data Table */}
@@ -151,13 +178,14 @@ export default function OrdersPage() {
                     <th className="px-6 py-4">Date</th>
                     <th className="px-6 py-4">Customer</th>
                     <th className="px-6 py-4">Total</th>
+                    <th className="px-6 py-4">Payment</th>
                     <th className="px-6 py-4">Status</th>
                     <th className="px-6 py-4 text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
-                  {filteredOrders.length > 0 ? (
-                    filteredOrders.map((order) => (
+                  {orders.length > 0 ? (
+                    orders.map((order) => (
                       <tr
                         key={order.id}
                         className="hover:bg-slate-50/50 transition-colors"
@@ -171,6 +199,11 @@ export default function OrdersPage() {
                         </td>
                         <td className="px-6 py-4 text-slate-900">
                           ₦{order.total.toLocaleString()}
+                        </td>
+                        <td className="px-6 py-4">
+                          <span className={`text-xs font-semibold ${order.paymentStatus === "PAID" ? "text-emerald-800" : "text-amber-800"}`}>
+                            {order.paymentStatus === "PAID" ? "Paid" : "Unpaid"}
+                          </span>
                         </td>
                         <td className="px-6 py-4">
                           <span
@@ -206,7 +239,7 @@ export default function OrdersPage() {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan={6} className="px-6 py-12 text-center text-slate-400">
+                      <td colSpan={7} className="px-6 py-12 text-center text-slate-400">
                         No orders found matching your filter criteria.
                       </td>
                     </tr>
@@ -215,21 +248,27 @@ export default function OrdersPage() {
               </table>
             </div>
 
-            {/* Pagination Placeholder */}
-            <div className="p-4 border-t border-slate-100 flex items-center justify-between text-sm text-slate-500">
+            <div className="flex flex-col gap-3 border-t border-slate-100 p-4 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
               <p>
-                Showing 1 to {filteredOrders.length} of {orders.length} orders
+                Showing {firstItem}–{lastItem} of {pagination.total} orders
               </p>
-              <div className="flex gap-2">
+              <div className="flex w-full items-center justify-between gap-2 sm:w-auto">
                 <button
+                  type="button"
+                  onClick={() => setPage((current) => Math.max(1, current - 1))}
                   className="px-3 py-1 border border-slate-200 hover:bg-slate-50 disabled:opacity-50"
-                  disabled
+                  disabled={page === 1}
                 >
                   Previous
                 </button>
+                <span className="flex min-w-20 items-center justify-center text-xs font-semibold">
+                  Page {page} of {pagination.totalPages}
+                </span>
                 <button
+                  type="button"
+                  onClick={() => setPage((current) => Math.min(pagination.totalPages, current + 1))}
                   className="px-3 py-1 border border-slate-200 hover:bg-slate-50 disabled:opacity-50"
-                  disabled
+                  disabled={page >= pagination.totalPages}
                 >
                   Next
                 </button>

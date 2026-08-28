@@ -10,7 +10,6 @@ import {
   Eye,
   EyeOff,
   Loader2,
-  LockKeyhole,
 } from "lucide-react";
 
 export default function AdminLoginPage() {
@@ -79,7 +78,7 @@ export default function AdminLoginPage() {
         </div>
       </header>
 
-      <div className="flex flex-1 items-center justify-center px-5 py-12 sm:px-8 lg:px-12">
+      <div className="flex flex-1 items-start justify-center px-5 pb-10 pt-10 sm:px-8 sm:pt-14 lg:items-center lg:px-12 lg:py-12">
         <div className="w-full max-w-[460px]">
           <div className="mb-8">
             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#7C8651]">

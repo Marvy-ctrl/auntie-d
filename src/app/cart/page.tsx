@@ -72,7 +72,7 @@ export default function CartPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-            <Link href="/shop" className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#123A2D] w-fit">
+            <Link href="/shop" className="inline-flex items-center gap-1.5 text-xs font-bold text-[#123A2D] hover:text-[#123A2D] w-fit">
               <ArrowLeft className="w-4 h-4" /> Continue shopping
             </Link>
            {cartItems.length > 0 && (

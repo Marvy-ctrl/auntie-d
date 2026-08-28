@@ -113,7 +113,7 @@ export default function AboutPage() {
                   <span className="text-xs font-bold tracking-widest text-[#BDD0C4] pt-1">01</span>
                   <h3 className="text-2xl sm:text-3xl font-bold leading-tight">100% Natural</h3>
                   <p className="col-start-2 sm:col-start-3 text-sm sm:text-base text-[#D5E0D7] leading-7 max-w-md">
-                    No synthetic additives or artificial preservatives. What is shown on the label is exactly what is inside the bottle.
+                    No synthetic additives or artificial preservatives.
                   </p>
                 </article>
 

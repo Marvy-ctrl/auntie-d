@@ -127,10 +127,10 @@ export default function EditCategoryPage() {
           ></textarea>
         </div>
 
-        <div className="pt-4 border-t border-slate-100 flex justify-end gap-4">
+        <div className="flex flex-col-reverse gap-3 border-t border-slate-100 pt-4 sm:flex-row sm:justify-end">
           <Link 
             href="/admin/categories"
-            className="px-6 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 transition-colors disabled:opacity-50"
+            className="flex h-12 w-full items-center justify-center px-6 font-medium text-slate-600 hover:bg-slate-50 sm:w-auto"
             aria-disabled={isSaving}
           >
             Cancel
@@ -138,7 +138,7 @@ export default function EditCategoryPage() {
           <button
             type="submit"
             disabled={isSaving}
-            className="bg-[#1F5A43] hover:bg-[#234934] text-white px-8 py-3 rounded-xl font-medium flex items-center gap-2 transition-colors shadow-sm disabled:opacity-70 disabled:cursor-not-allowed"
+            className="flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap bg-[#1F5A43] px-8 font-medium text-white hover:bg-[#234934] disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
           >
             {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
             {isSaving ? "Saving..." : "Save Changes"}
@@ -149,7 +149,6 @@ export default function EditCategoryPage() {
     </div>
   );
 }
-
 
 
 
