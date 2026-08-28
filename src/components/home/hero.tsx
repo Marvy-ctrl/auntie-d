@@ -31,7 +31,7 @@ export default function Hero() {
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:min-h-[670px]">
           
           <div className="hero-copy flex flex-col items-start justify-center text-left order-2 lg:order-1 py-14 lg:py-20">
-            <span className="text-[10px] font-bold tracking-[0.2em] text-[#78814D] uppercase mb-8">Natural wellness, thoughtfully prepared</span>
+          
             <h1 className="text-4xl min-[400px]:text-5xl lg:text-7xl font-serif font-medium text-[#1A3626] mb-7 leading-[1.02] tracking-tight">
              <span className={`${myCustomFont.className} text-[#123A2D] font-bold`}> Feel better,</span><br /><span className={`${myCustomFont.className} italic text-[#78814D] `}>naturally</span>.
             </h1>

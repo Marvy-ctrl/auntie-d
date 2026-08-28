@@ -168,10 +168,7 @@ export default function AdminLoginPage() {
             </button>
           </form>
 
-          <p className="mt-8 border-t border-[#D5DED8] pt-5 text-xs leading-5 text-[#7A8982]">
-            This area is restricted to Auntie-D Herbs administrators. Contact
-            the store owner if you need access.
-          </p>
+         
         </div>
       </div>
     </main>

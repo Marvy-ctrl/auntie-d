@@ -11,12 +11,11 @@ import { ArrowLeft, Loader2, Plus, Minus, ShoppingCart } from "lucide-react";
 import { myCustomFont } from "@/src/app/fonts/fonts";
 
 interface ProductDetailPageProps {
-  params: { id: string } | Promise<{ id: string }>;
+  params: Promise<{ id: string }>;
 }
 
 export default function ProductDetailPage({ params }: ProductDetailPageProps) {
-  // Unwrap params properly using React.use() first
-  const unwrappedParams = React.use(params as Promise<{ id: string }>);
+  const unwrappedParams = React.use(params);
   const id = unwrappedParams?.id;
 
   const [product, setProduct] = useState<any>(null);

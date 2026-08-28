@@ -1,9 +1,9 @@
 import { categorySchema } from "@/src/modules/categories/category.schema";
 import { deleteCategory, getCategoryById, updateCategory } from "@/src/modules/categories/category.service";
 
-export async function GET(req: Request, { params }: {params: { id: string}} ) {
-    const unwrapParams = await params
-    const category = await getCategoryById(unwrapParams.id)
+export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params
+    const category = await getCategoryById(id)
     
     if (!category) {
         return Response.json(

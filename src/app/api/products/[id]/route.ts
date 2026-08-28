@@ -2,9 +2,9 @@ import { productSchema, updateProductSchema } from "@/src/modules/products/produ
 import { deleteProduct, getProductById, updateProduct } from "@/src/modules/products/product.service";
 import { uploadToCloudinary } from "@/src/lib/cloudinary";
 
-export async function GET(req: Request, {params}: {params: { id: string}} ) {
-    const unwrapParams = await params
-    const product = await getProductById(unwrapParams.id)
+export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params
+    const product = await getProductById(id)
     
     if (!product) {
         return Response.json(
