@@ -42,13 +42,15 @@ export default async function AdminCategoriesPage() {
   return (
     <div className={`${myCustomFont.className} max-w-6xl mx-auto`}>
       
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
-        <h1 className="text-3xl font-serif font-bold text-slate-900">Categories</h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 gap-4">
+        <div>
+          <Link href="/admin" className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#78814D] mb-3">Back to Dashboard</Link>
+        <h1 className="text-3xl lg:text-4xl font-serif font-bold text-[#0D3B2E] mt-4">Categories</h1><p className="font-sans text-sm text-[#66776E] mt-3">Organise products into clear wellness collections.</p></div>
         
         {categories.length > 0 && (
           <Link 
             href="/admin/categories/new" 
-            className="bg-[#1A3626] hover:bg-[#234934] text-white px-5 py-2.5 rounded-xl font-medium flex items-center gap-2 transition-colors text-sm shadow-sm"
+            className="bg-[#1F624A] hover:bg-[#0D3B2E] text-white px-5 py-2.5 font-medium flex items-center gap-2 text-sm"
           >
             <Plus className="w-4 h-4" />
             Add Category
@@ -56,7 +58,7 @@ export default async function AdminCategoriesPage() {
         )}
       </div>
 
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+      <div className="border border-[#D9DFDA] overflow-hidden font-sans">
         
         {categories.length === 0 ? (
           
@@ -68,7 +70,7 @@ export default async function AdminCategoriesPage() {
             </p>
             <Link 
               href="/admin/categories/new" 
-              className="bg-[#1F5A43] hover:bg-[#234934] text-white px-6 py-3 rounded-xl font-medium flex items-center gap-2 transition-colors text-sm shadow-sm"
+              className="bg-[#1F624A] hover:bg-[#0D3B2E] text-white px-6 py-3 font-medium flex items-center gap-2 text-sm"
             >
               <Plus className="w-4 h-4" />
               Create First Category
@@ -84,14 +86,14 @@ export default async function AdminCategoriesPage() {
                 <input 
                   type="text" 
                   placeholder="Search categories..." 
-                  className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1A3626] focus:border-[#1A3626] transition-colors"
+                  className="w-full pl-9 pr-4 py-2 border border-[#D9DFDA] text-sm focus:outline-none focus:border-[#1A3626]"
                 />
               </div>
             </div>
 
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm whitespace-nowrap">
-                <thead className="bg-slate-50 text-slate-500 uppercase tracking-wider text-[10px] font-bold">
+                <thead className="text-[#66776E] uppercase tracking-wider text-[10px] font-bold border-b border-[#D9DFDA]">
                   <tr>
                     <th className="px-6 py-4">Category Name</th>
                     <th className="px-6 py-4">Description</th>

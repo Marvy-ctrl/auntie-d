@@ -48,15 +48,19 @@ export default function AdminDashboard() {
 
   return (
     <div className="max-w-6xl mx-auto">
-      <h1 className={`${myCustomFont.className} text-3xl font-bold text-slate-900 mb-8`}>
-        Dashboard Overview
-      </h1>
+      <div className="mb-8">
+        <p className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#78814D] mb-3">Welcome Back, Admin</p>
+        <h1 className={`${myCustomFont.className} text-3xl lg:text-4xl font-bold text-[#0D3B2E]`}>
+          Store overview
+        </h1>
+        <p className="text-sm text-[#66776E] mt-3">A clear view of orders, products, and store performance.</p>
+      </div>
 
       <DashboardStats />
 
       {/* Recent Orders Table */}
-      <div className="bg-white rounded-sm border border-slate-100 p-8">
-        <h2 className="text-xl font-bold text-slate-900 mb-6">Recent Orders</h2>
+      <div className="border border-[#D9DFDA] p-5 lg:p-6">
+        <div className="flex items-end justify-between mb-5"><h2 className="font-serif text-xl font-bold text-[#0D3B2E]">Recent orders</h2><Link href="/admin/orders" className="text-xs font-bold ">View all</Link></div>
         
         {isLoading ? (
           <div className="flex justify-center py-12">

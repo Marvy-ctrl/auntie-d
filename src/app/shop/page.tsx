@@ -78,15 +78,15 @@ export default function ShopPage() {
             </p>
           </div>
 
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 sm:gap-5 lg:gap-6 mb-8 sm:mb-10 lg:mb-12 bg-white p-3 sm:p-4 border-slate-100">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 sm:gap-5 lg:gap-6 mb-8 sm:mb-10 lg:mb-12 border-y border-[#D2DAD3] py-4">
             
-            <div className="flex items-center gap-2 overflow-x-auto rounded-full w-full lg:w-auto pb-1 lg:pb-0 scrollbar-hide">
+            <div className="flex items-center gap-2 overflow-x-auto w-full lg:w-auto pb-1 lg:pb-0 scrollbar-hide">
               <button
                 onClick={() => setSelectedCategory("all")}
-                className={`px-4 sm:px-5 py-2 text-xs rounded-full sm:text-sm font-medium transition-colors whitespace-nowrap ${
+                className={`px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium whitespace-nowrap border ${
                   selectedCategory === "all"
-                    ? "bg-[#123A2D] text-white"
-                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                    ? "bg-[#123A2D] text-white border-[#123A2D]"
+                    : "bg-transparent text-[#65736C] border-[#D2DAD3] hover:bg-[#EDF2E8]"
                 }`}
               >
                 All
@@ -96,10 +96,10 @@ export default function ShopPage() {
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-colors whitespace-nowrap ${
+                  className={`px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium whitespace-nowrap border ${
                     selectedCategory === cat.id
-                      ? "bg-[#123A2D] text-white"
-                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                      ? "bg-[#123A2D] text-white border-[#123A2D]"
+                      : "bg-transparent text-[#65736C] border-[#D2DAD3] hover:bg-[#EDF2E8]"
                   }`}
                 >
                   {cat.name}
@@ -115,7 +115,7 @@ export default function ShopPage() {
                 placeholder="Search products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 sm:py-2 bg-slate-50 border border-slate-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#1A3626] text-sm"
+                className="w-full pl-10 pr-4 py-2.5 sm:py-2 bg-transparent border border-[#D2DAD3] focus:outline-none focus:border-[#1A3626] text-sm"
               />
             </div>
           </div>
@@ -125,7 +125,7 @@ export default function ShopPage() {
               <Loader2 className="w-7 h-7 sm:w-8 sm:h-8 animate-spin text-[#1A3626]" />
             </div>
           ) : filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
               {filteredProducts.map((product) => (
                 <div key={product.id} className="relative group">
                   <ProductCard

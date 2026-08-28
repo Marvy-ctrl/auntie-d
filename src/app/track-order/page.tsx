@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Header from '@/src/components/home/header';
 import Footer from '@/src/components/home/footer';
-import { ArrowLeft, Search, MessageCircle, Loader2 } from 'lucide-react';
+import { ArrowLeft, Search, MessageCircle, Loader2, Check } from 'lucide-react';
 import { myCustomFont } from '@/src/app/fonts/fonts';
 
 export default function TrackOrderPage() {
@@ -159,22 +159,46 @@ export default function TrackOrderPage() {
               </div>
 
               {/* Status Progress Bar */}
-              <div className="pt-6 pb-4 overflow-x-auto">
-                <div className="relative flex items-center justify-between min-w-[450px] mx-auto px-4">
+              <div className="pt-6 pb-4">
+                {/* Compact vertical timeline on phones */}
+                <div className="sm:hidden space-y-0">
+                  {steps.map((stepLabel, idx) => {
+                    const isCompleted = idx <= currentStep;
+                    const isCurrent = idx === currentStep;
+                    return (
+                      <div key={stepLabel} className="relative flex items-center gap-4 min-h-12">
+                        {idx < steps.length - 1 && (
+                          <div className={`absolute left-[9px] top-7 bottom-0 w-px ${idx < currentStep ? 'bg-[#123A2D]' : 'bg-slate-300'}`} />
+                        )}
+                        <div className={`relative z-10 w-5 h-5 shrink-0 border-2 flex items-center justify-center ${isCompleted ? 'bg-[#123A2D] border-[#123A2D] text-white' : 'bg-[#FFFDF7] border-slate-300'}`}>
+                          {isCompleted && <Check className="w-3 h-3" strokeWidth={3} aria-hidden="true" />}
+                        </div>
+                        <span className={`text-sm ${isCompleted ? 'text-[#123A2D] font-bold' : 'text-slate-400'}`}>
+                          {stepLabel}{isCurrent ? <span className="ml-2 text-[10px] uppercase tracking-wider text-[#78814D]">Current</span> : null}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Full horizontal timeline from tablet upward */}
+                <div className="relative hidden sm:flex items-center justify-between mx-auto px-4">
                   <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-[2px] bg-slate-300 z-0" />
                   
                   {steps.map((stepLabel, idx) => {
                     const isCompleted = idx <= currentStep;
                     return (
-                      <div key={idx} className="relative z-10 flex flex-col items-center">
+                      <div key={idx} className="relative z-10 flex flex-col items-center min-w-0">
                         <div 
-                          className={`w-3.5 h-3.5 border-2 transition-colors ${
+                          className={`w-5 h-5 border-2 flex items-center justify-center ${
                             isCompleted 
-                              ? 'bg-[#123A2D] border-[#123A2D]' 
+                              ? 'bg-[#123A2D] border-[#123A2D] text-white'
                               : 'bg-white border-slate-300'
                           }`} 
-                        />
-                        <span className={`text-[11px] mt-2 font-medium text-center ${isCompleted ? 'text-[#123A2D] font-bold' : 'text-slate-400'}`}>
+                        >
+                          {isCompleted && <Check className="w-3 h-3" strokeWidth={3} aria-hidden="true" />}
+                        </div>
+                        <span className={`text-[10px] md:text-[11px] mt-2 font-medium text-center whitespace-nowrap ${isCompleted ? 'text-[#123A2D] font-bold' : 'text-slate-400'}`}>
                           {stepLabel}
                         </span>
                       </div>
@@ -189,12 +213,12 @@ export default function TrackOrderPage() {
                 <div className="space-y-3">
                   {orderDetails.items && orderDetails.items.length > 0 ? (
                     orderDetails.items.map((item: any, idx: number) => (
-                      <div key={idx} className="flex justify-between items-center text-sm py-2.5 bg-[#F4F1EA]/50 px-4 border border-slate-200/40">
-                        <div>
+                      <div key={idx} className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 text-sm py-3 bg-[#F4F1EA]/50 px-4 border border-slate-200/40">
+                        <div className="min-w-0">
                           <span className="font-bold text-slate-800">{item.productName || item.name}</span>
-                          <span className="text-slate-500 ml-2">({item.variantLabel || item.variant || "Standard"}) x {item.quantity}</span>
+                          <span className="text-slate-500 block sm:inline sm:ml-2 mt-1 sm:mt-0">({item.variantLabel || item.variant || "Standard"}) x {item.quantity}</span>
                         </div>
-                        <span className="font-bold text-[#123A2D]">₦{(Number(item.lineTotal || (Number(item.unitPrice || item.price || 0) * Number(item.quantity || 0)))).toLocaleString()}</span>
+                        <span className="font-bold text-[#123A2D] shrink-0">₦{(Number(item.lineTotal || (Number(item.unitPrice || item.price || 0) * Number(item.quantity || 0)))).toLocaleString()}</span>
                       </div>
                     ))
                   ) : (
@@ -204,7 +228,7 @@ export default function TrackOrderPage() {
               </div>
 
               <div className="pt-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <p className="text-xs text-slate-500">Have questions about your order?</p>
+                <p className="text-xs md:text-sm text-slate-500">Have questions about your order?</p>
                 <a
                   href="https://wa.me/2349160677079"
                   target="_blank"

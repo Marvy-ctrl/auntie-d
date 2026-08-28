@@ -81,19 +81,21 @@ export default function AdminProductsPage() {
   });
 
   return (
-    <div className="space-y-8 pb-12">
+    <div className="max-w-6xl mx-auto space-y-8 pb-12">
       
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-serif font-bold text-slate-900">Products</h1>
+          <Link href= "/admin" className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#78814D] mb-3">Back to Dashboard
+          </Link>
+          <h1 className="mt-4 text-3xl lg:text-4xl font-serif font-bold text-[#0D3B2E]">Products</h1>
           <p className="text-sm text-slate-500 mt-1">
             Manage your store inventory, pricing, and featured herbal items.
           </p>
         </div>
         <Link
           href="/admin/products/new"
-          className="bg-[#1A3626] hover:bg-[#234934] text-white px-5 py-3 font-medium flex items-center justify-center gap-2 transition-colors shadow-sm self-start sm:self-auto"
+          className="bg-[#1F624A] hover:bg-[#0D3B2E] text-white px-5 py-3 font-medium flex items-center justify-center gap-2 self-start sm:self-auto"
         >
           <Plus className="w-5 h-5" />
           Add Product
@@ -101,7 +103,7 @@ export default function AdminProductsPage() {
       </div>
 
       {/* Search Bar */}
-      <div className="bg-white p-4 shadow-sm border border-slate-100 flex items-center gap-3">
+      <div className="p-4 border border-[#D9DFDA] flex items-center gap-3">
         <Search className="w-5 h-5 text-slate-400 ml-2" />
         <input
           type="text"
@@ -120,7 +122,7 @@ export default function AdminProductsPage() {
       )}
 
       {/* Products Table Card */}
-      <div className="bg-white shadow-sm border border-slate-100 overflow-hidden">
+      <div className="border border-[#D9DFDA] overflow-hidden">
         {isLoading ? (
           <div className="flex flex-col items-center justify-center py-20">
             <Loader2 className="w-8 h-8 animate-spin text-[#1A3626] mb-2" />
@@ -149,7 +151,7 @@ export default function AdminProductsPage() {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-slate-50 text-slate-500 uppercase tracking-wider text-[10px] font-bold border-b border-slate-100">
+              <thead className="text-[#66776E] uppercase tracking-wider text-[10px] font-bold border-b border-[#D9DFDA]">
                 <tr>
                   <th className="px-6 py-4">Product</th>
                   <th className="px-6 py-4">Category</th>
@@ -165,7 +167,7 @@ export default function AdminProductsPage() {
                     {/* Image & Product Name */}
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 bg-slate-100 border border-slate-200 overflow-hidden relative flex-shrink-0 flex items-center justify-center">
+                        <div className="w-12 h-12 border border-[#D9DFDA] overflow-hidden relative flex-shrink-0 flex items-center justify-center">
                           {product.image || product.imageUrl ? (
                             <Image
                               src={product.image || product.imageUrl}
@@ -190,7 +192,7 @@ export default function AdminProductsPage() {
 
                     {/* Category */}
                     <td className="px-6 py-4">
-                      <span className="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-medium">
+                      <span className="text-slate-700 text-xs font-medium">
                         {product.category?.name || "Uncategorized"}
                       </span>
                     </td>

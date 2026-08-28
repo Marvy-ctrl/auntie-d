@@ -91,14 +91,17 @@ export default function OrdersPage() {
 
   return (
     <div className={`${myCustomFont.className} max-w-6xl mx-auto`}>
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
-        <h1 className="text-3xl font-bold text-slate-900">Orders</h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 gap-4">
+        <div>
+          <Link href="/admin" className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#78814D] mb-3">Back to Dashboard
+          </Link>
+          <h1 className="mt-4 text-3xl lg:text-4xl font-bold text-[#0D3B2E]">Orders</h1><p className="font-sans text-sm text-[#66776E] mt-3">Track customer orders from confirmation to delivery.</p></div>
       </div>
 
-      <div className="bg-white border border-slate-100 overflow-hidden">
+      <div className="bg-white border border-[#D9DFDA] overflow-hidden font-sans">
         {orders.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 px-4 text-center">
-            <ShoppingBag className="w-12 h-12 text-slate-300 mb-4" />
+            {/* <ShoppingBag className="w-12 h-12 text-slate-300 mb-4" /> */}
             <h3 className="text-xl font-bold text-slate-900 mb-2">
               No orders yet
             </h3>
@@ -110,7 +113,7 @@ export default function OrdersPage() {
         ) : (
           <>
             {/* Search Bar / Filter Toolbar */}
-            <div className="p-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+            <div className="p-4 border-b border-slate-50 flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
               <div className="relative flex-1 max-w-md">
                 <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
                 <input
@@ -118,7 +121,7 @@ export default function OrdersPage() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search order ID or customer..."
-                  className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#1A3626] focus:border-[#1A3626] transition-colors"
+                  className="w-full pl-9 pr-4 py-2 border border-[#CCD7CA] text-sm focus:outline-none focus:border-[#1A3626]"
                 />
               </div>
 
@@ -126,7 +129,7 @@ export default function OrdersPage() {
               <select
                 value={selectedStatusFilter}
                 onChange={(e) => setSelectedStatusFilter(e.target.value)}
-                className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#1A3626]"
+                className="px-4 py-2 border border-[#CCD7CA] text-xs font-bold text-[#0D3B2E] focus:outline-none focus:border-[#1A3626]"
               >
                 <option value="ALL">All Orders</option>
                 <option value="AWAITING_CONFIRMATION">Awaiting Confirmation</option>
@@ -142,7 +145,7 @@ export default function OrdersPage() {
             {/* Data Table */}
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm whitespace-nowrap">
-                <thead className="bg-slate-50 text-slate-500 uppercase tracking-wider text-[10px] font-bold">
+                <thead className="text-[#66776E] uppercase tracking-wider text-[10px] font-bold">
                   <tr>
                     <th className="px-6 py-4">Order ID</th>
                     <th className="px-6 py-4">Date</th>

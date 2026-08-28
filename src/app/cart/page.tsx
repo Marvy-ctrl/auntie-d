@@ -71,13 +71,13 @@ export default function CartPage() {
       <main className="flex-grow py-8 sm:py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="flex items-center justify-between mb-8">
-            <Link href="/shop" className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#123A2D] transition-colors">
-              <ArrowLeft className="w-4 h-4" /> Continue Shopping
+          <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+            <Link href="/shop" className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#123A2D] w-fit">
+              <ArrowLeft className="w-4 h-4" /> Continue shopping
             </Link>
            {cartItems.length > 0 && (
-              <h1 className={`${myCustomFont.className} text-2xl sm:text-3xl font-bold text-[#123A2D]`}>
-                Your Shopping Cart
+              <h1 className={`${myCustomFont.className} text-3xl sm:text-3xl font-bold text-[#123A2D] leading-tight`}>
+                Your shopping cart
               </h1>
             )}
           </div>
@@ -101,8 +101,8 @@ export default function CartPage() {
                   const itemTotal = itemPrice * item.quantity;
 
                   return (
-                    <div key={index} className="bg-white p-4 sm:p-6 border border-slate-100 flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
-                      <div className="relative w-24 h-24 bg-slate-50 rounded-xl overflow-hidden flex-shrink-0 border border-slate-100 flex items-center justify-center">
+                    <div key={index} className="relative p-4 sm:p-6 border border-[#D2DAD3] grid grid-cols-[88px_1fr] sm:flex items-start sm:items-center gap-4 sm:gap-6">
+                      <div className="relative w-[88px] h-28 sm:w-24 sm:h-24 bg-[#E4ECE2] overflow-hidden flex-shrink-0 flex items-center justify-center">
                         {item.image ? (
                           <Image src={item.image} alt={item.name} fill className="object-cover" />
                         ) : (
@@ -110,45 +110,31 @@ export default function CartPage() {
                         )}
                       </div>
 
-                      <div className="flex-grow text-center sm:text-left">
-                        <h3 className="text-base font-bold text-[#123A2D] line-clamp-1">{item.name}</h3>
+                      <div className="flex-grow text-left pr-7 sm:pr-0">
+                        <h3 className="text-lg font-bold text-[#123A2D] leading-tight line-clamp-2">{item.name}</h3>
                         <p className="text-xs text-slate-500 mt-0.5">Option: <span className="font-semibold text-slate-700">{item.variant}</span></p>
                         <p className="text-sm font-bold text-emerald-700 mt-2">
                           ₦{itemPrice.toLocaleString()} each
                         </p>
                       </div>
 
-                      {/* Quantity Controls */}
-                      <div className="flex items-center bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 gap-3">
-                        <button
-                          type="button"
-                          onClick={() => updateQuantity(index, -1)}
-                          className="text-slate-500 hover:text-[#123A2D] transition-colors"
-                        >
-                          <Minus className="w-3.5 h-3.5" />
-                        </button>
-                        <span className="text-xs font-bold text-slate-900 w-4 text-center">{item.quantity}</span>
-                        <button
-                          type="button"
-                          onClick={() => updateQuantity(index, 1)}
-                          className="text-slate-500 hover:text-[#123A2D] transition-colors"
-                        >
-                          <Plus className="w-3.5 h-3.5" />
+                      <div className="col-span-2 sm:col-span-1 flex items-center justify-between sm:justify-end gap-4 pt-3 sm:pt-0 border-t sm:border-t-0 border-[#E0E6DF]">
+                        <div className="flex items-center border border-[#CBD6C9] h-10">
+                          <button type="button" onClick={() => updateQuantity(index, -1)} className="w-10 h-full flex items-center justify-center text-slate-500 hover:bg-[#E8EFE5]" aria-label={`Decrease ${item.name} quantity`}>
+                            <Minus className="w-3.5 h-3.5" />
+                          </button>
+                          <span className="text-xs font-bold text-slate-900 w-8 text-center">{item.quantity}</span>
+                          <button type="button" onClick={() => updateQuantity(index, 1)} className="w-10 h-full flex items-center justify-center text-slate-500 hover:bg-[#E8EFE5]" aria-label={`Increase ${item.name} quantity`}>
+                            <Plus className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+
+                        <p className="text-sm font-bold text-[#123A2D] sm:min-w-[90px] sm:text-right">₦{itemTotal.toLocaleString()}</p>
+
+                        <button type="button" onClick={() => removeItem(index)} className="absolute top-3 right-3 sm:static text-slate-400 hover:text-red-500 p-2" title="Remove item" aria-label={`Remove ${item.name}`}>
+                          <Trash2 className="w-4 h-4" />
                         </button>
                       </div>
-
-                      <div className="text-right min-w-[90px]">
-                        <p className="text-sm font-bold text-slate-900">₦{itemTotal.toLocaleString()}</p>
-                      </div>
-
-                      <button
-                        type="button"
-                        onClick={() => removeItem(index)}
-                        className="text-slate-400 hover:text-red-500 transition-colors p-2"
-                        title="Remove item"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
                     </div>
                   );
                 })}
@@ -165,7 +151,7 @@ export default function CartPage() {
               </div>
 
               {/* Order Summary Summary Card */}
-              <div className="bg-white p-6 sm:p-8 border border-slate-100 sticky top-24">
+              <div className="bg-[#ffffff6a] p-6 sm:p-8 border border-[#D2DAD3] lg:sticky lg:top-24">
                 <h3 className={`${myCustomFont.className} text-xl font-bold text-[#123A2D] mb-6`}>Order Summary</h3>
                 
                 <div className="space-y-4 text-sm mb-6 pb-6 border-b border-slate-100">
@@ -179,9 +165,9 @@ export default function CartPage() {
                   </div>
                 </div>
 
-                <div className="flex justify-between text-base font-bold text-[#123A2D] mb-8">
+                <div className="flex items-end justify-between gap-4 text-base font-bold text-[#123A2D] mb-8">
                   <span>Estimated Total</span>
-                  <span className="text-xl text-emerald-700">{formattedSubtotal}</span>
+                  <span className="text-xl text-emerald-700 whitespace-nowrap">{formattedSubtotal}</span>
                 </div>
 
                 <Link

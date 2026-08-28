@@ -49,14 +49,13 @@ export default function ProductGrid() {
   }
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl font-serif font-bold text-emerald-900 mb-4">
-          Our Products
-        </h2>
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-28">
+      <div className="flex items-end justify-between gap-6 mb-8 sm:mb-10">
+        <div><h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#123A2D]">Our Products</h2></div>
+        <a href="/shop" className="hidden sm:block text-xs font-bold uppercase tracking-widest text-[#1F5A43] pb-1">View all products</a>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
         {products.map((product) => (
           <ProductCard
             key={product.id}
@@ -64,6 +63,7 @@ export default function ProductGrid() {
             name={product.name}
             price={product.price}
             image={product.image || product.imageUrl}
+            shortDescription={product.shortDescription}
             variants={product.variants}
           />
         ))}

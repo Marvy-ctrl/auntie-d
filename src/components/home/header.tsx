@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { ShoppingCart, Leaf, Search, Menu, X } from "lucide-react";
+import { ShoppingCart, Menu, X } from "lucide-react";
 import Image from "next/image";
 
 export default function Header() {
@@ -31,74 +31,78 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-[#FAFAF7]/90 backdrop-blur-md border-b border-green-100">
+    <header className="site-header bg-[#FDFCF8] border-b border-[#D2DAD3]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-[76px]">
           {/* Mobile Menu Button */}
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-emerald-800 hover:text-emerald-600 transition-colors"
+            className="md:hidden p-2 text-[#123A2D]"
             aria-label="Toggle mobile menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
 
-          <div className="flex-shrink-0 flex items-center gap-2 md-gap-4">
+          <div className="flex-shrink-0 flex items-center gap-3">
             <Image
               src="/logo.jpeg"
               alt="logo"
               width={40}
               height={40}
-              className="rounded-full object-cover w-10 h-10 md:w-[50px] md:h-[50px]"
+              className="object-cover w-10 h-10"
             />
             <Link
               href="/"
-              className="font-serif text-2xl font-bold text-emerald-900 tracking-tight"
+              className="font-serif text-xl sm:text-2xl font-bold text-[#123A2D] tracking-tight"
             >
               Auntie-D Herbs
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex items-center gap-8 h-full">
             <Link
               href="/"
-              className="text-emerald-900 hover:text-emerald-600 font-medium transition-colors"
+              className="h-full flex items-center text-[#123A2D] hover:text-[#78814D] text-xs font-bold uppercase tracking-[0.12em]"
             >
               Home
             </Link>
             <Link
               href="/shop"
-              className="text-emerald-900 hover:text-emerald-600 font-medium transition-colors"
+              className="h-full flex items-center text-[#123A2D] hover:text-[#78814D] text-xs font-bold uppercase tracking-[0.12em]"
             >
               Shop
             </Link>
             <Link
               href="/about"
-              className="text-emerald-900 hover:text-emerald-600 font-medium transition-colors"
+              className="h-full flex items-center text-[#123A2D] hover:text-[#78814D] text-xs font-bold uppercase tracking-[0.12em]"
             >
               About
             </Link>
             <Link
               href="/track-order"
-              className="text-emerald-900 hover:text-emerald-600 font-medium transition-colors"
+              className="h-full flex items-center text-[#123A2D] hover:text-[#78814D] text-xs font-bold uppercase tracking-[0.12em]"
             >
               Track Order
             </Link>
             <Link
               href="/#contact"
-              className="text-emerald-900 hover:text-emerald-600 font-medium transition-colors"
+              className="h-full flex items-center text-[#123A2D] hover:text-[#78814D] text-xs font-bold uppercase tracking-[0.12em]"
             >
               Contact Us
             </Link>
           </nav>
 
-          <div className="flex items-center space-x-5">
-            <Link href="/cart" className="relative p-2 text-[#123A2D] hover:bg-slate-50 rounded-full transition-colors">
+          <div className="flex items-center shrink-0">
+            <Link
+              href="/cart"
+              className="relative w-12 h-12 flex items-center justify-center text-[#123A2D] hover:bg-[#E4ECE2]"
+              aria-label={`Shopping cart with ${cartCount} items`}
+            >
               <ShoppingCart className="w-6 h-6" />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-emerald-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-sm">
-                  {cartCount}
+                <span className="absolute top-0 right-0 bg-[#1F5A43] text-white text-[10px] leading-none font-bold min-w-5 h-5 px-1 flex items-center justify-center border-2 border-[#FDFCF8]">
+                  {cartCount > 99 ? "99+" : cartCount}
                 </span>
               )}
             </Link>
@@ -108,40 +112,40 @@ export default function Header() {
 
       {/* Mobile Navigation Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#FAFAF7] border-b border-green-100 px-6 py-4 shadow-lg animate-in slide-in-from-top duration-200">
-          <nav className="flex flex-col space-y-4">
+        <div className="md:hidden bg-[#FDFCF8] px-4 py-0">
+          <nav className="flex flex-col divide-y divide-[#D2DAD3]">
             <Link
               href="/"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-emerald-900 hover:text-emerald-600 font-medium transition-colors text-lg"
+              className="text-[#123A2D] py-4 font-bold uppercase tracking-widest text-sm"
             >
               Home
             </Link>
             <Link
               href="/shop"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-emerald-900 hover:text-emerald-600 font-medium transition-colors text-lg"
+              className="text-[#123A2D] py-4 font-bold uppercase tracking-widest text-sm"
             >
               Shop
             </Link>
             <Link
               href="/about"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-emerald-900 hover:text-emerald-600 font-medium transition-colors text-lg"
+              className="text-[#123A2D] py-4 font-bold uppercase tracking-widest text-sm"
             >
               About
             </Link>
             <Link
               href="/track-order"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-emerald-900 hover:text-emerald-600 font-medium transition-colors text-lg"
+              className="text-[#123A2D] py-4 font-bold uppercase tracking-widest text-sm"
             >
               Track Order
             </Link>
             <Link
               href="/#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-emerald-900 hover:text-emerald-600 font-medium transition-colors text-lg"
+              className="text-[#123A2D] py-4 font-bold uppercase tracking-widest text-sm"
             >
               Contact Us
             </Link>

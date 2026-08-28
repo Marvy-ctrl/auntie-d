@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Leaf, Plus, Minus, ShoppingCart} from 'lucide-react';
+import { Plus, Minus } from 'lucide-react';
 import { Inter } from 'next/font/google';
 import { myCustomFont } from '@/src/app/fonts/fonts';
 
@@ -23,6 +23,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ id, name, price, image, variants, shortDescription, description }: ProductCardProps) {
   const [quantity, setQuantity] = useState<number>(0);
+  const [imageError, setImageError] = useState(false);
   const hasVariants = variants && variants.length > 0;
   let priceDisplay = "";
 
@@ -80,48 +81,54 @@ export default function ProductCard({ id, name, price, image, variants, shortDes
   };
 
   return (
-    <Link href={`/shop/${id}`} className="group cursor-pointer block">
-      <div className="relative bg-white overflow-hidden border border-emerald-50 aspect-square mb-4 flex items-center justify-center transition-shadow hover:shadow-md">
-        {image ? (
+    <Link href={`/shop/${id}`} className="group cursor-pointer block bg-[#FDFCF8]">
+      <div className="relative bg-[#DCE7D6] overflow-hidden aspect-[1.12/1] mb-5 flex items-center justify-center">
+        {image && !imageError ? (
           <Image
             src={image}
             alt={name}
             fill
-            sizes="(max-width: 768px) 100vw, 25vw"
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover"
+            onError={() => setImageError(true)}
           />
         ) : (
-          <div className="h-48 w-48 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-300">
-            <Leaf className="w-16 h-16" />
+          <div className="flex flex-col items-center">
+            <div className="w-14 h-6 bg-[#CDA72B] border border-[#A78720]" />
+            <div className="w-28 h-40 bg-[#0D3B2E] flex items-center justify-center px-3">
+              <div className="w-full bg-[#FDF8E9] py-4 px-2 text-center text-[#0D3B2E]">
+                <span className="text-[6px] uppercase tracking-wider block mb-2">Auntie D Herbs</span>
+                <strong className={`${myCustomFont.className} text-sm leading-tight block`}>{name}</strong>
+              </div>
+            </div>
           </div>
         )}
       </div>
-      <h3 className={`${myCustomFont.className} text-lg font-bold text-[#123A2D] transition-colors line-clamp-1`}>
+      <h3 className={`${myCustomFont.className} text-2xl font-bold text-[#123A2D] line-clamp-1`}>
         {name}
       </h3>
-       <p className={`${inter.className} text-[#65736C] font-medium mt-1`}>
-        {shortDescription}
+       <p className={`${inter.className} text-[#65736C] text-sm leading-relaxed mt-2 min-h-10 line-clamp-2`}>
+        {shortDescription || description || "A carefully prepared herbal blend for everyday wellness support."}
       </p>
-     <div className="flex items-center justify-between mt-1">
-        <p className="text-emerald-600 font-medium">
+      <p className="text-[#0D3B2E] font-bold mt-3 mb-4">
           {priceDisplay}
-        </p>
+      </p>
 
         {quantity === 0 ? (
           <button
             type="button"
             onClick={handleAddToCart}
-            className="p-2 bg-[#123A2D] hover:bg-[#1a523f] text-white rounded-full shadow-sm transition-all duration-200"
+            className="w-full h-12 px-4 bg-transparent hover:bg-[#E8EFE5] text-[#123A2D] border border-[#CBD6C9] flex items-center justify-between font-bold text-sm"
             title="Add to cart"
           >
-            <ShoppingCart className="w-4 h-4" />
+            <span>Add to cart</span><Plus className="w-4 h-4" />
           </button>
         ) : (
-          <div className="flex items-center bg-[#123A2D] text-white rounded-full px-2 py-1 shadow-sm gap-2">
+          <div className="h-12 flex items-center justify-between bg-[#123A2D] text-white border border-[#123A2D] px-3 gap-2">
             <button
               type="button"
               onClick={handleDecrement}
-              className="p-1 hover:bg-[#1a523f] rounded-full transition-colors"
+              className="p-1 hover:bg-[#1a523f]"
               title="Decrease quantity"
             >
               <Minus className="w-3 h-3" />
@@ -130,18 +137,13 @@ export default function ProductCard({ id, name, price, image, variants, shortDes
             <button
               type="button"
               onClick={handleIncrement}
-              className="p-1 hover:bg-[#1a523f] rounded-full transition-colors"
+              className="p-1 hover:bg-[#1a523f]"
               title="Increase quantity"
             >
               <Plus className="w-3 h-3" />
             </button>
           </div>
         )}
-      </div>
     </Link>
   );
 }
-
-
-
-

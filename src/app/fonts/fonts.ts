@@ -10,5 +10,6 @@ export const myCustomFont = localFont({
     },
   
   ],
-  display: 'swap', 
+  display: 'swap',
+  variable: '--font-georgia',
 });

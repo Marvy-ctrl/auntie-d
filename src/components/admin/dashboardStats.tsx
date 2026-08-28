@@ -10,10 +10,10 @@ interface StatCardProps {
 
 function StatCard({ title, value }: StatCardProps) {
   return (
-    <div className="bg-white p-6 rounded-sm border border-slate-100 flex items-center justify-between">
+    <div className="p-5 lg:p-6 border border-[#D9DFDA] flex items-center justify-between">
       <div>
-        <p className="text-sm font-medium text-slate-500">{title}</p>
-        <p className="text-2xl font-bold text-slate-900 mt-1">{value}</p>
+        <p className="text-[10px] font-bold tracking-[0.16em] uppercase text-[#66776E]">{title}</p>
+        <p className="font-sans text-3xl font-bold text-[#0D3B2E] mt-2">{value}</p>
       </div>
      
     </div>
@@ -93,7 +93,7 @@ export default function DashboardStats() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
       {STATS_ITEMS.map((stat) => (
         <StatCard
           key={stat.id}

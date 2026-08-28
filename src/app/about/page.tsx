@@ -93,56 +93,46 @@ export default function AboutPage() {
         {/* =========================
             2. OUR PHILOSOPHY
         ========================== */}
-        <section className="bg-[#1F5A43] py-14 sm:py-16 lg:py-28 text-white">
+        <section className="bg-[#1F5A43] py-16 sm:py-20 lg:py-28 text-white border-y border-[#567C6C]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            {/* Section Heading */}
-            <div className="text-center mb-10 sm:mb-14 lg:mb-20">
-              <span className="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-[#E8F3E8]/70 uppercase mb-3 block">
-                Our Philosophy
-              </span>
-
-              <h2 className="text-2xl sm:text-3xl lg:text-5xl  font-medium leading-tight">
-                What drives our craft
-              </h2>
-            </div>
-
-            {/* Values */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-8 lg:gap-16">
-              
-              <div className="flex flex-col items-center text-center px-4">
-                <h3 className="text-lg sm:text-xl font-bold mb-3 ">
-                  100% Natural
-                </h3>
-
-                <p className="text-sm sm:text-base text-[#E8F3E8]/90 leading-7 max-w-sm">
-                  We never use synthetic additives or artificial preservatives.
-                  What you see on the label is exactly what is inside the bottle.
+            <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-24 items-start">
+              <div className="lg:sticky lg:top-28">
+                <span className="text-[10px] sm:text-xs font-bold tracking-[0.22em] text-[#BDD0C4] uppercase mb-5 block">
+                  Our philosophy
+                </span>
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-medium leading-[1.02] max-w-md">
+                  What drives<br className="hidden sm:block" /> our craft
+                </h2>
+                <p className="mt-7 text-sm sm:text-base text-[#D5E0D7] leading-7 max-w-sm">
+                  Three principles guide every blend we prepare and every customer we serve.
                 </p>
               </div>
 
-              <div className="flex flex-col items-center text-center px-4">
-                <h3 className="text-lg sm:text-xl font-bold mb-3 ">
-                  Careful Preparation
-                </h3>
+              <div className="border-t border-[#6D8D80]">
+                <article className="grid grid-cols-[42px_1fr] sm:grid-cols-[56px_0.8fr_1.2fr] gap-4 sm:gap-6 py-8 sm:py-10 border-b border-[#6D8D80] items-start">
+                  <span className="text-xs font-bold tracking-widest text-[#BDD0C4] pt-1">01</span>
+                  <h3 className="text-2xl sm:text-3xl font-bold leading-tight">100% Natural</h3>
+                  <p className="col-start-2 sm:col-start-3 text-sm sm:text-base text-[#D5E0D7] leading-7 max-w-md">
+                    No synthetic additives or artificial preservatives. What is shown on the label is exactly what is inside the bottle.
+                  </p>
+                </article>
 
-                <p className="text-sm sm:text-base text-[#E8F3E8]/90 leading-7 max-w-sm">
-                  Our remedies are carefully prepared to ensure maximum potency,
-                  freshness, and quality control in every single order.
-                </p>
+                <article className="grid grid-cols-[42px_1fr] sm:grid-cols-[56px_0.8fr_1.2fr] gap-4 sm:gap-6 py-8 sm:py-10 border-b border-[#6D8D80] items-start">
+                  <span className="text-xs font-bold tracking-widest text-[#BDD0C4] pt-1">02</span>
+                  <h3 className="text-2xl sm:text-3xl font-bold leading-tight">Careful Preparation</h3>
+                  <p className="col-start-2 sm:col-start-3 text-sm sm:text-base text-[#D5E0D7] leading-7 max-w-md">
+                    Each remedy is prepared with close attention to freshness, potency, consistency, and quality control.
+                  </p>
+                </article>
+
+                <article className="grid grid-cols-[42px_1fr] sm:grid-cols-[56px_0.8fr_1.2fr] gap-4 sm:gap-6 py-8 sm:py-10 border-b border-[#6D8D80] items-start">
+                  <span className="text-xs font-bold tracking-widest text-[#BDD0C4] pt-1">03</span>
+                  <h3 className="text-2xl sm:text-3xl font-bold leading-tight">Community First</h3>
+                  <p className="col-start-2 sm:col-start-3 text-sm sm:text-base text-[#D5E0D7] leading-7 max-w-md">
+                    Wellness is a journey best taken together, supported by honest guidance and thoughtful personal service.
+                  </p>
+                </article>
               </div>
-
-              <div className="flex flex-col items-center text-center px-4 sm:col-span-2 lg:col-span-1">
-                <h3 className="text-lg sm:text-xl font-bold mb-3 ">
-                  Community First
-                </h3>
-
-                <p className="text-sm sm:text-base text-[#E8F3E8]/90 leading-7 max-w-sm">
-                  Wellness is a journey best taken together. We are committed to
-                  providing honest guidance and support to everyone who trusts us.
-                </p>
-              </div>
-
             </div>
           </div>
         </section>
